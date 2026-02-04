@@ -16,8 +16,8 @@
     <link rel="icon" type="image/png" href="images/faviconV2.png">
 
     <!-- SEO AVANÇADO -->
-    <title>Ozoori – Suporte Metabólico Oficial & Fórmula de Equilíbrio Natural</title>
-    <meta name="description" content="Descubra Ozoori, a fórmula 100% natural para equilíbrio metabólico. Disponível globalmente. Aproveite 50% de desconto hoje.">
+    <title>Ozoori – Official Odor Neutralizer & Groceries Freshness Support</title>
+    <meta name="description" content="Ozoori neutralizes fridge odors at the root, helps reduce mold and makes groceries last longer. Get 75% OFF today.">
     
     <!-- LIBRARIES -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -32,9 +32,10 @@
             background-color: #ffffff;
             color: #000000;
         }
-        .bg-primary { background-color: #204826; }
-        .text-primary { color: #204826; }
-        .border-primary { border-color: #204826; }
+        /* Detalhes em Preto */
+        .bg-primary { background-color: #000000; }
+        .text-primary { color: #000000; }
+        .border-primary { border-color: #000000; }
         
         /* Estilo Light Premium */
         .card-light {
@@ -43,8 +44,8 @@
             transition: all 0.3s ease;
         }
         .card-light:hover {
-            border-color: #204826;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            border-color: #000000;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
         }
 
         /* Carrossel Customizado */
@@ -73,7 +74,7 @@
         .carousel-slide.active {
             opacity: 1;
         }
-        .carousel-slide img {
+        .carousel-slide img, .carousel-slide video {
             max-width: 100%;
             max-height: 100%;
             object-fit: contain;
@@ -91,20 +92,19 @@
 
     <!-- BARRA DE TOPO -->
     <div class="bg-primary text-white text-[10px] md:text-xs font-bold py-2.5 text-center uppercase tracking-[0.2em] px-5">
-        OFERTA ESPECIAL POR TEMPO LIMITADO | 50% DE DESCONTO
+        OFERTA ESPECIAL POR TEMPO LIMITADO | 75% DE DESCONTO
     </div>
 
     <!-- NAVBAR -->
     <nav class="bg-white/90 border-b border-gray-100 py-4 sticky top-0 z-50 backdrop-blur-md">
         <div class="container mx-auto px-5 flex justify-between items-center">
             <div class="flex items-center">
-                <!-- Logo atualizada -->
                 <img src="images/logo_Ozoori_black.svg" alt="Ozoori Logo" class="h-8 md:h-10 w-auto">
             </div>
             <div class="flex gap-4 items-center">
                 <div class="hidden md:flex gap-6 mr-4 text-[11px] font-bold uppercase tracking-widest text-gray-500">
-                    <button onclick="openModal('howtouse')" class="hover:text-primary transition">Como Usar</button>
-                    <button onclick="openModal('ingredients')" class="hover:text-primary transition">Ingredientes</button>
+                    <button onclick="openModal('howtouse')" class="hover:text-black transition">Como Usar</button>
+                    <button onclick="openModal('specs')" class="hover:text-black transition">Especificações</button>
                 </div>
                 <a href="#country-selection" class="bg-primary text-white px-6 py-2.5 rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-opacity-80 transition shadow-lg">Preços</a>
             </div>
@@ -115,135 +115,142 @@
     <section class="bg-white py-10 border-b border-gray-50">
         <div class="container mx-auto px-5">
             <div class="carousel-container rounded-3xl overflow-hidden shadow-sm border border-gray-100">
-                <!-- Slides do Carrossel (Removidos placeholders) -->
-                <div class="carousel-slide active"><img src="images/ozori.jpg" alt="Ozoori Image 1"></div>
-                <div class="carousel-slide"><img src="images/ozori1.jpg" alt="Ozoori Image 2"></div>
-                <div class="carousel-slide"><img src="images/ozori2.jpg" alt="Ozoori Image 3"></div>
-                <div class="carousel-slide"><img src="images/ozori3.webp" alt="Ozoori Image 4"></div>
-                <div class="carousel-slide"><img src="images/ozori4.jpg" alt="Ozoori Image 5"></div>
-                <div class="carousel-slide"><img src="images/ozori5.jpg" alt="Ozoori Image 6"></div>
-                <div class="carousel-slide"><img src="images/ozori6.jpg" alt="Ozoori Image 7"></div>
-                <div class="carousel-slide"><img src="images/ozori7.jpg" alt="Ozoori Image 8"></div>
-                <div class="carousel-slide"><img src="images/ozori8.webp" alt="Ozoori Image 9"></div>
+                <div class="carousel-slide active"><img src="images/ozori.jpg" alt="Ozoori Display 1"></div>
+                <div class="carousel-slide">
+                    <video autoplay muted loop playsinline class="w-full h-full">
+                        <source src="images/ozori11.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="carousel-slide"><img src="images/ozori2.jpg" alt="Ozoori Display 2"></div>
+                <div class="carousel-slide"><img src="images/ozori3.webp" alt="Ozoori Display 3"></div>
+                <div class="carousel-slide"><img src="images/ozori4.jpg" alt="Ozoori Display 4"></div>
+                <div class="carousel-slide"><img src="images/ozori5.jpg" alt="Ozoori Display 5"></div>
+                <div class="carousel-slide"><img src="images/ozori6.jpg" alt="Ozoori Display 6"></div>
+                <div class="carousel-slide"><img src="images/ozori7.jpg" alt="Ozoori Display 7"></div>
+                <div class="carousel-slide"><img src="images/ozori8.webp" alt="Ozoori Display 8"></div>
             </div>
         </div>
     </section>
 
-    <!-- HERO CONTENT -->
-    <section id="about" class="container mx-auto px-6 py-20 md:py-32 max-w-4xl text-center">
-        <div class="flex items-center gap-1 mb-8 text-yellow-500 text-sm justify-center animate-fade-up">
-            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-            <span class="text-gray-500 font-bold ml-2 uppercase tracking-tighter">4.9/5 de Satisfação Global</span>
+    <!-- HERO CONTENT (PRIMEIRA SESSÃO) -->
+    <section id="about" class="container mx-auto px-6 py-12 md:py-24 max-w-5xl text-center">
+        <!-- Social Proof -->
+        <div class="flex flex-col items-center gap-2 mb-8 animate-fade-up">
+            <div class="flex text-yellow-500 text-sm">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+            </div>
+            <span class="text-gray-500 font-bold text-xs md:text-sm uppercase tracking-widest">
+                4.7 | 1000+ Verified Reviews
+            </span>
         </div>
         
-        <h1 class="text-4xl md:text-6xl font-bold text-black mb-8 leading-tight animate-fade-up" style="animation-delay: 0.1s">
-            Descubra Ozoori – <br><span class="text-primary italic">Suporte Inteligente, Naturalmente.</span>
+        <!-- Main Headline -->
+        <h1 class="text-4xl md:text-6xl font-bold text-black mb-6 leading-tight animate-fade-up" style="animation-delay: 0.1s">
+            Fridge Odor Is Wasted Money in Disguise
         </h1>
         
-        <p class="text-gray-600 text-lg md:text-xl mb-12 leading-relaxed animate-fade-up" style="animation-delay: 0.2s">
-            Um novo padrão em bem-estar diário. Ozoori foi desenvolvido para otimizar seu metabolismo, níveis de energia e equilíbrio corporal. Sinta-se mais leve e focado todos os dias.
+        <!-- Subheadline -->
+        <p class="text-gray-600 text-lg md:text-2xl mb-12 max-w-3xl mx-auto leading-relaxed animate-fade-up" style="animation-delay: 0.2s">
+            If it smells off, something’s breaking down — and you’re paying for it.
         </p>
 
-        <!-- FEATURES -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-20 animate-fade-up" style="animation-delay: 0.3s">
-            <div class="card-light p-8 rounded-3xl flex items-start gap-5 text-left shadow-sm">
-                <div class="bg-primary/10 p-4 rounded-2xl text-primary shrink-0">
-                    <i class="fas fa-leaf text-xl"></i>
-                </div>
-                <div>
-                    <h3 class="font-bold text-black mb-2 text-lg">Fórmula 100% Natural</h3>
-                    <p class="text-sm text-gray-500">Sem OGM ou aditivos químicos desnecessários.</p>
-                </div>
+        <!-- Bullet Features -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-16 text-left animate-fade-up" style="animation-delay: 0.3s">
+            <div class="card-light p-6 rounded-2xl flex items-start gap-4">
+                <div class="bg-black text-white p-2 rounded-lg shrink-0"><i class="fas fa-check"></i></div>
+                <p class="text-sm md:text-base font-semibold">Neutralizes odors at the root (not sprays, not baking-soda hacks)</p>
             </div>
-            <div class="card-light p-8 rounded-3xl flex items-start gap-5 text-left shadow-sm">
-                <div class="bg-primary/10 p-4 rounded-2xl text-primary shrink-0">
-                    <i class="fas fa-bolt text-xl"></i>
-                </div>
-                <div>
-                    <h3 class="font-bold text-black mb-2 text-lg">Eficiência Metabólica</h3>
-                    <p class="text-sm text-gray-500">Apoia o uso natural de energia do seu corpo.</p>
-                </div>
+            <div class="card-light p-6 rounded-2xl flex items-start gap-4">
+                <div class="bg-black text-white p-2 rounded-lg shrink-0"><i class="fas fa-check"></i></div>
+                <p class="text-sm md:text-base font-semibold">Helps reduce odor-causing mold and bacteria in humid fridge conditions</p>
             </div>
+            <div class="card-light p-6 rounded-2xl flex items-start gap-4">
+                <div class="bg-black text-white p-2 rounded-lg shrink-0"><i class="fas fa-check"></i></div>
+                <p class="text-sm md:text-base font-semibold">Makes groceries last longer — fewer repeat shopping trips</p>
+            </div>
+            <div class="card-light p-6 rounded-2xl flex items-start gap-4">
+                <div class="bg-black text-white p-2 rounded-lg shrink-0"><i class="fas fa-check"></i></div>
+                <p class="text-sm md:text-base font-semibold">No filters, no refills, no hidden costs: recharge and you’re done</p>
+            </div>
+        </div>
+
+        <!-- Happy Customers Count -->
+        <div class="mb-10 animate-fade-up" style="animation-delay: 0.4s">
+            <span class="bg-gray-100 text-black text-[10px] md:text-xs font-bold px-4 py-2 rounded-full uppercase tracking-widest border border-gray-200">
+                8K+ Happy Customers | In stock and ready to ship
+            </span>
         </div>
 
         <!-- MAIN CTA -->
-        <div class="animate-fade-up" style="animation-delay: 0.4s">
-            <button onclick="document.getElementById('country-selection').scrollIntoView({ behavior: 'smooth' })" class="w-full md:w-auto bg-primary hover:bg-opacity-90 text-white font-bold text-xl md:text-2xl py-6 px-20 rounded-full shadow-lg transition-all hover:scale-105 active:scale-95 uppercase tracking-tighter">
-                Verificar Oferta de 50% OFF
+        <div class="animate-fade-up" style="animation-delay: 0.5s">
+            <button onclick="document.getElementById('country-selection').scrollIntoView({ behavior: 'smooth' })" class="w-full md:w-auto bg-primary hover:bg-opacity-80 text-white font-bold text-xl md:text-2xl py-6 px-20 rounded-full shadow-[0_10px_30px_rgba(0,0,0,0.15)] transition-all hover:scale-105 active:scale-95 uppercase tracking-tighter">
+                GET -75% OFF NOW
             </button>
-            <p class="text-xs text-gray-400 mt-10 uppercase tracking-[0.3em] font-bold">
-                <i class="fas fa-lock mr-2 text-primary"></i> Conexão segura com o checkout oficial
-            </p>
+        </div>
+
+        <!-- Trust Bar Icons -->
+        <div class="mt-12 py-8 border-t border-gray-100 animate-fade-up" style="animation-delay: 0.6s">
+            <div class="flex flex-wrap justify-center gap-4 md:gap-10 text-[9px] md:text-[11px] font-bold text-gray-400 uppercase tracking-widest">
+                <div class="flex items-center gap-2"><i class="fas fa-leaf text-black"></i> LONG-LASTING FRESHNESS</div>
+                <div class="flex items-center gap-2"><i class="fas fa-wind text-black"></i> INSTANT ODOR REMOVAL</div>
+                <div class="flex items-center gap-2"><i class="fas fa-sync text-black"></i> NO FILTER REPLACEMENT</div>
+                <div class="flex items-center gap-2"><i class="fas fa-shield-alt text-black"></i> 30-DAY MONEY-BACK GUARANTEE</div>
+            </div>
         </div>
     </section>
 
     <!-- COUNTRY SELECTION -->
     <section id="country-selection" class="py-24 bg-gray-50 border-t border-gray-100">
         <div class="container mx-auto px-5 text-center">
-            <h2 class="text-3xl md:text-5xl font-bold mb-16 tracking-tight uppercase italic text-black/80">Selecione sua Região</h2>
+            <h2 class="text-3xl md:text-5xl font-bold mb-16 tracking-tight uppercase italic text-black/80">Select your Region</h2>
             
             <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
-                <!-- USA -->
                 <a href="https://www.fasttrack36.com/PHPWHDRK/2R37J52Q/?uid=47762" class="card-light p-6 rounded-3xl flex flex-col items-center gap-4 group">
                     <img src="https://flagcdn.com/w80/us.png" class="w-12 h-auto rounded shadow-sm" alt="USA">
-                    <span class="font-bold text-black group-hover:text-primary transition">Estados Unidos</span>
-                    <span class="text-[10px] bg-primary/10 text-primary px-3 py-1 rounded-full font-bold uppercase">Ver Oferta</span>
+                    <span class="font-bold text-black group-hover:text-black transition">United States</span>
+                    <span class="text-[10px] bg-black/5 text-black px-3 py-1 rounded-full font-bold uppercase">See Offer</span>
                 </a>
-
-                <!-- UK -->
                 <a href="https://www.fasttrack36.com/PHPWHDRK/2R37J52Q/?uid=47765" class="card-light p-6 rounded-3xl flex flex-col items-center gap-4 group">
                     <img src="https://flagcdn.com/w80/gb.png" class="w-12 h-auto rounded shadow-sm" alt="UK">
-                    <span class="font-bold text-black group-hover:text-primary transition">Reino Unido</span>
-                    <span class="text-[10px] bg-primary/10 text-primary px-3 py-1 rounded-full font-bold uppercase">Ver Oferta</span>
+                    <span class="font-bold text-black group-hover:text-black transition">United Kingdom</span>
+                    <span class="text-[10px] bg-black/5 text-black px-3 py-1 rounded-full font-bold uppercase">See Offer</span>
                 </a>
-
-                <!-- DACH -->
                 <a href="https://www.fasttrack36.com/PHPWHDRK/2R37J52Q/?uid=47777" class="card-light p-6 rounded-3xl flex flex-col items-center gap-4 group">
                     <div class="flex gap-1">
                         <img src="https://flagcdn.com/w40/de.png" class="w-6 h-auto rounded shadow-sm" alt="DE">
                         <img src="https://flagcdn.com/w40/at.png" class="w-6 h-auto rounded shadow-sm" alt="AT">
                         <img src="https://flagcdn.com/w40/ch.png" class="w-6 h-auto rounded shadow-sm" alt="CH">
                     </div>
-                    <span class="font-bold text-black group-hover:text-primary transition text-sm">Alemanha / Áustria / Suíça</span>
-                    <span class="text-[10px] bg-primary/10 text-primary px-3 py-1 rounded-full font-bold uppercase">Ver Oferta</span>
+                    <span class="font-bold text-black group-hover:text-black transition text-sm">DE / AT / CH</span>
+                    <span class="text-[10px] bg-black/5 text-black px-3 py-1 rounded-full font-bold uppercase">See Offer</span>
                 </a>
-
-                <!-- NL -->
                 <a href="https://www.fasttrack36.com/PHPWHDRK/2R37J52Q/?uid=47783" class="card-light p-6 rounded-3xl flex flex-col items-center gap-4 group">
                     <img src="https://flagcdn.com/w80/nl.png" class="w-12 h-auto rounded shadow-sm" alt="NL">
-                    <span class="font-bold text-black group-hover:text-primary transition">Holanda</span>
-                    <span class="text-[10px] bg-primary/10 text-primary px-3 py-1 rounded-full font-bold uppercase">Ver Oferta</span>
+                    <span class="font-bold text-black group-hover:text-black transition">Netherlands</span>
+                    <span class="text-[10px] bg-black/5 text-black px-3 py-1 rounded-full font-bold uppercase">See Offer</span>
                 </a>
-
-                <!-- FR / BE -->
                 <a href="https://www.fasttrack36.com/PHPWHDRK/2R37J52Q/?uid=47780" class="card-light p-6 rounded-3xl flex flex-col items-center gap-4 group">
                     <div class="flex gap-1">
                         <img src="https://flagcdn.com/w40/fr.png" class="w-6 h-auto rounded shadow-sm" alt="FR">
                         <img src="https://flagcdn.com/w40/be.png" class="w-6 h-auto rounded shadow-sm" alt="BE">
                     </div>
-                    <span class="font-bold text-black group-hover:text-primary transition">França / Bélgica</span>
-                    <span class="text-[10px] bg-primary/10 text-primary px-3 py-1 rounded-full font-bold uppercase">Ver Oferta</span>
+                    <span class="font-bold text-black group-hover:text-black transition">France / Belgium</span>
+                    <span class="text-[10px] bg-black/5 text-black px-3 py-1 rounded-full font-bold uppercase">See Offer</span>
                 </a>
-
-                <!-- Canada -->
                 <a href="https://www.fasttrack36.com/PHPWHDRK/2R37J52Q/?uid=47768" class="card-light p-6 rounded-3xl flex flex-col items-center gap-4 group">
                     <img src="https://flagcdn.com/w80/ca.png" class="w-12 h-auto rounded shadow-sm" alt="CA">
-                    <span class="font-bold text-black group-hover:text-primary transition">Canadá</span>
-                    <span class="text-[10px] bg-primary/10 text-primary px-3 py-1 rounded-full font-bold uppercase">Ver Oferta</span>
+                    <span class="font-bold text-black group-hover:text-black transition">Canada</span>
+                    <span class="text-[10px] bg-black/5 text-black px-3 py-1 rounded-full font-bold uppercase">See Offer</span>
                 </a>
-
-                <!-- Rest of Europe -->
                 <a href="https://www.fasttrack36.com/PHPWHDRK/2R37J52Q/?uid=47774" class="card-light p-6 rounded-3xl flex flex-col items-center gap-4 group">
-                    <i class="fas fa-euro-sign text-2xl text-primary"></i>
-                    <span class="font-bold text-black group-hover:text-primary transition">Europa (Geral)</span>
-                    <span class="text-[10px] bg-primary/10 text-primary px-3 py-1 rounded-full font-bold uppercase">Ver Oferta</span>
+                    <i class="fas fa-euro-sign text-2xl text-black"></i>
+                    <span class="font-bold text-black group-hover:text-black transition">Europe (General)</span>
+                    <span class="text-[10px] bg-black/5 text-black px-3 py-1 rounded-full font-bold uppercase">See Offer</span>
                 </a>
-
-                <!-- Outros -->
                 <a href="https://www.fasttrack36.com/PHPWHDRK/2R37J52Q/" class="card-light p-6 rounded-3xl flex flex-col items-center gap-4 group">
                     <i class="fas fa-globe text-2xl text-gray-300"></i>
-                    <span class="font-bold text-black group-hover:text-primary transition">Outros Países</span>
-                    <span class="text-[10px] bg-gray-100 text-gray-500 px-3 py-1 rounded-full font-bold uppercase">Ver Oferta</span>
+                    <span class="font-bold text-black group-hover:text-black transition">Other Countries</span>
+                    <span class="text-[10px] bg-gray-100 text-gray-500 px-3 py-1 rounded-full font-bold uppercase">See Offer</span>
                 </a>
             </div>
         </div>
@@ -252,24 +259,24 @@
     <!-- FAQ -->
     <section class="bg-white py-24">
         <div class="container mx-auto px-6 max-w-3xl">
-            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 uppercase italic tracking-tighter text-primary">Perguntas Frequentes</h2>
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 uppercase italic tracking-tighter text-black">Questions & Answers</h2>
             <div class="space-y-4">
                 <details class="group card-light rounded-2xl shadow-sm transition-all">
                     <summary class="p-6 font-bold cursor-pointer flex justify-between items-center text-lg list-none">
-                        <span>O que é Ozoori?</span>
-                        <span class="text-primary transition-transform group-open:rotate-45"><i class="fas fa-plus text-sm"></i></span>
+                        <span>How does Ozoori work?</span>
+                        <span class="text-black transition-transform group-open:rotate-45"><i class="fas fa-plus text-sm"></i></span>
                     </summary>
                     <div class="p-6 pt-0 text-gray-600 leading-relaxed border-t border-gray-50">
-                        Ozoori é um suplemento natural premium desenvolvido para auxiliar no equilíbrio do corpo e otimização metabólica através de extratos botânicos potentes.
+                        Ozoori uses advanced ionic technology to neutralize odors and bacteria at the molecular level, keeping your fridge fresh and your food lasting longer.
                     </div>
                 </details>
                 <details class="group card-light rounded-2xl shadow-sm transition-all">
                     <summary class="p-6 font-bold cursor-pointer flex justify-between items-center text-lg list-none">
-                        <span>É seguro para todos?</span>
-                        <span class="text-primary transition-transform group-open:rotate-45"><i class="fas fa-plus text-sm"></i></span>
+                        <span>Do I need to replace filters?</span>
+                        <span class="text-black transition-transform group-open:rotate-45"><i class="fas fa-plus text-sm"></i></span>
                     </summary>
                     <div class="p-6 pt-0 text-gray-600 leading-relaxed border-t border-gray-50">
-                        Sim, a fórmula utiliza ingredientes naturais. Recomendamos que gestantes ou pessoas sob medicação consultem um médico antes de iniciar o uso.
+                        No! Ozoori is designed to be filter-free. Simply recharge the device when needed and it's ready to go again.
                     </div>
                 </details>
             </div>
@@ -279,31 +286,26 @@
     <!-- FOOTER -->
     <footer class="bg-gray-50 pt-24 pb-12 border-t border-gray-100">
         <div class="container mx-auto px-6 text-center">
-            
             <div class="mb-16">
                 <div class="inline-flex items-center gap-3 bg-white px-8 py-4 rounded-full border border-gray-200 shadow-sm">
                     <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
-                    <span class="text-[10px] md:text-xs text-gray-500 font-bold uppercase tracking-[0.2em]">Distribuidor Oficial Autorizado</span>
+                    <span class="text-[10px] md:text-xs text-gray-500 font-bold uppercase tracking-[0.2em]">Authorized Official Partner</span>
                 </div>
             </div>
 
             <div class="mb-16 space-y-4 text-xs md:text-sm text-gray-500 max-w-2xl mx-auto">
-                <h4 class="font-bold uppercase tracking-widest mb-6 text-black">Informações Corporativas</h4>
-                <p>Gerenciado por: Haur B.V. (RSIN: 867612939)</p>
-                <p>Amsterdam, Holanda | Fabricado por: STR.VERT CONSULTANTS LTD</p>
+                <h4 class="font-bold uppercase tracking-widest mb-6 text-black">Corporate Information</h4>
+                <p>Managed by: Haur B.V. (RSIN: 867612939)</p>
+                <p>Amsterdam, Netherlands | Manufacturer: STR.VERT CONSULTANTS LTD</p>
                 <div class="pt-6 flex flex-col md:flex-row justify-center items-center gap-8 font-bold">
-                    <a href="mailto:hello@ozoori.com" class="hover:text-primary transition text-gray-600"><i class="fas fa-envelope mr-2 text-primary"></i> hello@ozoori.com</a>
-                    <a href="tel:+14842635085" class="hover:text-primary transition text-gray-600"><i class="fas fa-phone mr-2 text-primary"></i> +1 (484) 263-5085</a>
+                    <a href="mailto:hello@ozoori.com" class="hover:text-black transition text-gray-600"><i class="fas fa-envelope mr-2 text-black"></i> hello@ozoori.com</a>
+                    <a href="tel:+14842635085" class="hover:text-black transition text-gray-600"><i class="fas fa-phone mr-2 text-black"></i> +1 (484) 263-5085</a>
                 </div>
-            </div>
-
-            <div class="text-[10px] text-gray-400 italic mb-16 border-t border-gray-100 pt-12 max-w-4xl mx-auto">
-                <strong>Aviso Médico:</strong> Ozoori é um suplemento alimentar e não substitui uma dieta variada. Não se destina a diagnosticar, tratar ou curar doenças.
             </div>
 
             <div class="text-[9px] text-gray-400 tracking-[0.2em] uppercase">
                 <p>© 2026 Ozoori Official. Google Ads Compliance Shield.</p>
-                <p class="mt-2">Google é uma marca da Google, Inc. Este site é independente.</p>
+                <p class="mt-2">Google is a trademark of Google, Inc. This site is independent.</p>
             </div>
         </div>
     </footer>
@@ -311,13 +313,12 @@
     <!-- MODAL -->
     <div id="policyModal" class="modal" onclick="if(event.target == this) closeModal()">
         <div class="modal-content !bg-white relative text-left shadow-2xl">
-            <button onclick="closeModal()" class="sticky top-0 float-right text-4xl font-bold p-2 text-gray-400 hover:text-red-500 transition-colors">&times;</button>
+            <button onclick="closeModal()" class="sticky top-0 float-right text-4xl font-bold p-2 text-gray-500 hover:text-red-500 transition-colors">&times;</button>
             <div id="modalBody" class="pt-6 text-gray-600"></div>
         </div>
     </div>
 
     <script>
-        // Lógica do Carrossel Automático (3 segundos)
         let currentSlide = 0;
         const slides = document.querySelectorAll('.carousel-slide');
         
@@ -326,27 +327,24 @@
             currentSlide = (currentSlide + 1) % slides.length;
             slides[currentSlide].classList.add('active');
         }
-
         setInterval(nextSlide, 3000);
 
-        // Modais de Informação
         const modalContent = {
             howtouse: `
-                <h2 class="text-2xl font-bold mb-4 text-primary uppercase italic tracking-tighter border-b border-gray-100 pb-2">Guia de Uso</h2>
-                <p class="mb-4">Para melhores resultados, tome uma cápsula de Ozoori diariamente com um copo grande de água.</p>
-                <p>Preferencialmente 15-30 minutos antes do almoço ou jantar.</p>
+                <h2 class="text-2xl font-bold mb-4 text-black uppercase italic tracking-tighter border-b border-gray-100 pb-2">How to Use</h2>
+                <p class="mb-4">1. Charge your Ozoori fully before the first use.</p>
+                <p class="mb-4">2. Place it in any shelf of your fridge.</p>
+                <p>3. Let it work silently to neutralize odors and preserve freshness.</p>
             `,
-            ingredients: `
-                <h2 class="text-2xl font-bold mb-4 text-primary uppercase italic tracking-tighter border-b border-gray-100 pb-2">Ingredientes Ozoori</h2>
-                <div class="info-grid space-y-2">
-                    <div class="flex justify-between border-b border-gray-50 py-2"><span>Cromo</span><span class="font-bold text-black">0.1 mg</span></div>
-                    <div class="flex justify-between border-b border-gray-50 py-2"><span>Extrato de Chá Verde</span><span class="font-bold text-black">154 mg</span></div>
-                    <div class="flex justify-between border-b border-gray-50 py-2"><span>Vinagre de Maçã</span><span class="font-bold text-black">150 mg</span></div>
-                    <div class="flex justify-between border-b border-gray-50 py-2"><span>Berberina HCL</span><span class="font-bold text-black">150 mg</span></div>
+            specs: `
+                <h2 class="text-2xl font-bold mb-4 text-black uppercase italic tracking-tighter border-b border-gray-100 pb-2">Ozoori Specifications</h2>
+                <div class="info-grid space-y-2 text-sm">
+                    <div class="flex justify-between border-b border-gray-50 py-2"><span>Technology</span><span class="font-bold text-black">Active Ionic Neutralization</span></div>
+                    <div class="flex justify-between border-b border-gray-50 py-2"><span>Maintenance</span><span class="font-bold text-black">Filter-Free / Rechargeable</span></div>
+                    <div class="flex justify-between border-b border-gray-50 py-2"><span>Application</span><span class="font-bold text-black">Refrigerators / Small Spaces</span></div>
+                    <div class="flex justify-between border-b border-gray-50 py-2"><span>Satisfaction</span><span class="font-bold text-black">30-Day Money-Back Guarantee</span></div>
                 </div>
-            `,
-            privacy: `<h2 class="text-2xl font-bold mb-4 text-black">Política de Privacidade</h2><p>Seus dados estão seguros conosco de acordo com o GDPR.</p>`,
-            terms: `<h2 class="text-2xl font-bold mb-4 text-black">Termos de Uso</h2><p>O uso deste portal é exclusivo para fins informativos sobre o produto Ozoori.</p>`
+            `
         };
 
         function openModal(type) {
@@ -354,7 +352,6 @@
             document.getElementById('policyModal').style.display = "block";
             document.body.style.overflow = "hidden";
         }
-
         function closeModal() {
             document.getElementById('policyModal').style.display = "none";
             document.body.style.overflow = "auto";
