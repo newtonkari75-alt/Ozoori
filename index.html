@@ -22,7 +22,7 @@
     <!-- LIBRARIES -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     
     <style>
         body { 
@@ -30,7 +30,7 @@
             -webkit-font-smoothing: antialiased; 
             scroll-behavior: smooth; 
             background-color: #ffffff;
-            color: #000000;
+            color: #111111;
         }
         /* Detalhes em Preto */
         .bg-primary { background-color: #000000; }
@@ -40,25 +40,30 @@
         /* Estilo Light Premium */
         .card-light {
             background: #ffffff;
-            border: 1px solid #e5e7eb;
-            transition: all 0.3s ease;
+            border: 1px solid #f3f4f6;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
         .card-light:hover {
             border-color: #000000;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px -10px rgba(0, 0, 0, 0.1);
         }
 
         /* Carrossel Customizado */
         .carousel-container {
             position: relative;
             width: 100%;
-            height: 450px;
+            height: 0;
+            padding-bottom: 100%; /* Aspect ratio 1:1 quadrado para melhor alinhamento */
             overflow: hidden;
             background-color: #f9fafb;
+            border-radius: 24px;
         }
-        @media (max-width: 768px) {
-            .carousel-container { height: 320px; }
+        @media (min-width: 768px) {
+            /* No desktop, um pouco mais retangular ou adaptado */
+            .carousel-container { padding-bottom: 85%; }
         }
+
         .carousel-slide {
             position: absolute;
             top: 0;
@@ -66,18 +71,21 @@
             width: 100%;
             height: 100%;
             opacity: 0;
-            transition: opacity 1s ease-in-out;
+            transition: opacity 0.8s ease-in-out;
             display: flex;
             align-items: center;
             justify-content: center;
+            padding: 20px;
         }
         .carousel-slide.active {
             opacity: 1;
+            z-index: 10;
         }
         .carousel-slide img, .carousel-slide video {
-            max-width: 100%;
-            max-height: 100%;
+            width: 100%;
+            height: 100%;
             object-fit: contain;
+            border-radius: 12px;
         }
 
         /* Animações */
@@ -85,172 +93,225 @@
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        .animate-fade-up { animation: fade-up 0.8s ease-out forwards; }
+        .animate-fade-up { animation: fade-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+        
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.6);
+            backdrop-filter: blur(8px);
+        }
+        .modal-content {
+            background-color: #fff;
+            margin: 5% auto;
+            padding: 40px;
+            border-radius: 20px;
+            width: 92%;
+            max-width: 700px;
+            max-height: 85vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+        
+        /* Typography Refinements */
+        h1, h2, h3 { letter-spacing: -0.03em; }
+        .tracking-widest { letter-spacing: 0.1em; }
     </style>
 </head>
-<body class="overflow-x-hidden">
+<body class="overflow-x-hidden selection:bg-black selection:text-white">
 
     <!-- BARRA DE TOPO -->
-    <div class="bg-primary text-white text-[10px] md:text-xs font-bold py-2.5 text-center uppercase tracking-[0.2em] px-5">
+    <div class="bg-primary text-white text-[10px] md:text-xs font-bold py-3 text-center uppercase tracking-[0.2em] px-5 sticky top-0 z-[60]">
         OFERTA ESPECIAL POR TEMPO LIMITADO | 75% DE DESCONTO
     </div>
 
     <!-- NAVBAR -->
-    <nav class="bg-white/90 border-b border-gray-100 py-4 sticky top-0 z-50 backdrop-blur-md">
-        <div class="container mx-auto px-5 flex justify-between items-center">
+    <nav class="bg-white/80 border-b border-gray-100 py-4 backdrop-blur-xl sticky top-[38px] z-50">
+        <div class="container mx-auto px-5 max-w-7xl flex justify-between items-center">
             <div class="flex items-center">
                 <img src="images/logo_Ozoori_black.svg" alt="Ozoori Logo" class="h-8 md:h-10 w-auto">
             </div>
             <div class="flex gap-4 items-center">
-                <div class="hidden md:flex gap-6 mr-4 text-[11px] font-bold uppercase tracking-widest text-gray-500">
-                    <button onclick="openModal('howtouse')" class="hover:text-black transition">Como Usar</button>
-                    <button onclick="openModal('specs')" class="hover:text-black transition">Especificações</button>
+                <div class="hidden md:flex gap-8 mr-4 text-xs font-semibold uppercase tracking-wide text-gray-500">
+                    <button onclick="openModal('howtouse')" class="hover:text-black transition duration-300">How To Use</button>
+                    <button onclick="openModal('specs')" class="hover:text-black transition duration-300">Specifications</button>
                 </div>
-                <a href="#country-selection" class="bg-primary text-white px-6 py-2.5 rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-opacity-80 transition shadow-lg">Preços</a>
+                <a href="#country-selection" class="bg-primary text-white px-7 py-3 rounded-full text-[10px] font-bold uppercase tracking-widest hover:scale-105 active:scale-95 transition duration-300 shadow-xl shadow-black/10">Preços</a>
             </div>
         </div>
     </nav>
 
-    <!-- SEÇÃO CARROSSEL -->
-    <section class="bg-white py-10 border-b border-gray-50">
-        <div class="container mx-auto px-5">
-            <div class="carousel-container rounded-3xl overflow-hidden shadow-sm border border-gray-100">
-                <div class="carousel-slide active"><img src="images/ozori.jpg" alt="Ozoori Display 1"></div>
-                <div class="carousel-slide">
-                    <video autoplay muted loop playsinline class="w-full h-full">
-                        <source src="images/ozori11.mp4" type="video/mp4">
-                    </video>
+    <!-- HERO SECTION (ALINHADA: CARROSSEL ESQUERDA | TEXTO DIREITA) -->
+    <section class="bg-white py-12 md:py-24 border-b border-gray-50">
+        <div class="container mx-auto px-6 max-w-7xl">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+                
+                <!-- COLUNA 1: CARROSSEL -->
+                <div class="w-full order-1 lg:order-1">
+                    <div class="carousel-container shadow-2xl shadow-gray-200/50">
+                        <div class="carousel-slide active"><img src="images/ozori.jpg" alt="Ozoori Display 1"></div>
+                        <div class="carousel-slide">
+                            <video autoplay muted loop playsinline class="w-full h-full object-cover rounded-xl">
+                                <source src="images/ozori11.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                        <div class="carousel-slide"><img src="images/ozori2.jpg" alt="Ozoori Display 2"></div>
+                        <div class="carousel-slide"><img src="images/ozori3.webp" alt="Ozoori Display 3"></div>
+                        <div class="carousel-slide"><img src="images/ozori4.jpg" alt="Ozoori Display 4"></div>
+                        <div class="carousel-slide"><img src="images/ozori5.jpg" alt="Ozoori Display 5"></div>
+                        <div class="carousel-slide"><img src="images/ozori6.jpg" alt="Ozoori Display 6"></div>
+                        <div class="carousel-slide"><img src="images/ozori7.jpg" alt="Ozoori Display 7"></div>
+                        <div class="carousel-slide"><img src="images/ozori8.webp" alt="Ozoori Display 8"></div>
+                        
+                        <!-- Indicadores de slide (opcional para UX) -->
+                        <div class="absolute bottom-4 left-0 right-0 flex justify-center gap-2 z-20">
+                            <!-- JS vai controlar isso visualmente se necessário, ou mantemos limpo -->
+                        </div>
+                    </div>
                 </div>
-                <div class="carousel-slide"><img src="images/ozori2.jpg" alt="Ozoori Display 2"></div>
-                <div class="carousel-slide"><img src="images/ozori3.webp" alt="Ozoori Display 3"></div>
-                <div class="carousel-slide"><img src="images/ozori4.jpg" alt="Ozoori Display 4"></div>
-                <div class="carousel-slide"><img src="images/ozori5.jpg" alt="Ozoori Display 5"></div>
-                <div class="carousel-slide"><img src="images/ozori6.jpg" alt="Ozoori Display 6"></div>
-                <div class="carousel-slide"><img src="images/ozori7.jpg" alt="Ozoori Display 7"></div>
-                <div class="carousel-slide"><img src="images/ozori8.webp" alt="Ozoori Display 8"></div>
-            </div>
-        </div>
-    </section>
 
-    <!-- HERO CONTENT (PRIMEIRA SESSÃO) -->
-    <section id="about" class="container mx-auto px-6 py-12 md:py-24 max-w-5xl text-center">
-        <!-- Social Proof -->
-        <div class="flex flex-col items-center gap-2 mb-8 animate-fade-up">
-            <div class="flex text-yellow-500 text-sm">
-                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-            </div>
-            <span class="text-gray-500 font-bold text-xs md:text-sm uppercase tracking-widest">
-                4.7 | 1000+ Verified Reviews
-            </span>
-        </div>
-        
-        <!-- Main Headline -->
-        <h1 class="text-4xl md:text-6xl font-bold text-black mb-6 leading-tight animate-fade-up" style="animation-delay: 0.1s">
-            Fridge Odor Is Wasted Money in Disguise
-        </h1>
-        
-        <!-- Subheadline -->
-        <p class="text-gray-600 text-lg md:text-2xl mb-12 max-w-3xl mx-auto leading-relaxed animate-fade-up" style="animation-delay: 0.2s">
-            If it smells off, something’s breaking down — and you’re paying for it.
-        </p>
+                <!-- COLUNA 2: CONTEÚDO HERO -->
+                <div class="w-full order-2 lg:order-2 text-left">
+                    <!-- Social Proof -->
+                    <div class="flex items-center gap-3 mb-6 animate-fade-up">
+                        <div class="flex text-yellow-400 text-sm gap-0.5">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                        <span class="text-gray-500 font-bold text-xs uppercase tracking-widest border-l border-gray-200 pl-3">
+                            4.7 | 1000+ Verified Reviews
+                        </span>
+                    </div>
+                    
+                    <!-- Headline -->
+                    <h1 class="text-4xl lg:text-6xl font-extrabold text-black mb-6 leading-[1.1] animate-fade-up" style="animation-delay: 0.1s">
+                        Fridge Odor Is <span class="text-gray-400">Wasted Money</span> in Disguise.
+                    </h1>
+                    
+                    <!-- Subheadline -->
+                    <p class="text-gray-600 text-lg lg:text-xl mb-10 leading-relaxed font-medium max-w-xl animate-fade-up" style="animation-delay: 0.2s">
+                        If it smells off, something’s breaking down — and you’re paying for it. Stop the cycle today.
+                    </p>
 
-        <!-- Bullet Features -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-16 text-left animate-fade-up" style="animation-delay: 0.3s">
-            <div class="card-light p-6 rounded-2xl flex items-start gap-4">
-                <div class="bg-black text-white p-2 rounded-lg shrink-0"><i class="fas fa-check"></i></div>
-                <p class="text-sm md:text-base font-semibold">Neutralizes odors at the root (not sprays, not baking-soda hacks)</p>
-            </div>
-            <div class="card-light p-6 rounded-2xl flex items-start gap-4">
-                <div class="bg-black text-white p-2 rounded-lg shrink-0"><i class="fas fa-check"></i></div>
-                <p class="text-sm md:text-base font-semibold">Helps reduce odor-causing mold and bacteria in humid fridge conditions</p>
-            </div>
-            <div class="card-light p-6 rounded-2xl flex items-start gap-4">
-                <div class="bg-black text-white p-2 rounded-lg shrink-0"><i class="fas fa-check"></i></div>
-                <p class="text-sm md:text-base font-semibold">Makes groceries last longer — fewer repeat shopping trips</p>
-            </div>
-            <div class="card-light p-6 rounded-2xl flex items-start gap-4">
-                <div class="bg-black text-white p-2 rounded-lg shrink-0"><i class="fas fa-check"></i></div>
-                <p class="text-sm md:text-base font-semibold">No filters, no refills, no hidden costs: recharge and you’re done</p>
-            </div>
-        </div>
+                    <!-- Features List -->
+                    <div class="space-y-4 mb-10 animate-fade-up" style="animation-delay: 0.3s">
+                        <div class="flex items-start gap-4 p-3 hover:bg-gray-50 rounded-xl transition-colors -ml-3">
+                            <div class="bg-black text-white w-6 h-6 rounded-full flex items-center justify-center shrink-0 text-[10px] mt-0.5"><i class="fas fa-check"></i></div>
+                            <p class="text-sm font-semibold text-gray-800">Neutralizes odors at the root (not sprays, not baking-soda hacks)</p>
+                        </div>
+                        <div class="flex items-start gap-4 p-3 hover:bg-gray-50 rounded-xl transition-colors -ml-3">
+                            <div class="bg-black text-white w-6 h-6 rounded-full flex items-center justify-center shrink-0 text-[10px] mt-0.5"><i class="fas fa-check"></i></div>
+                            <p class="text-sm font-semibold text-gray-800">Helps reduce odor-causing mold and bacteria in humid fridge conditions</p>
+                        </div>
+                        <div class="flex items-start gap-4 p-3 hover:bg-gray-50 rounded-xl transition-colors -ml-3">
+                            <div class="bg-black text-white w-6 h-6 rounded-full flex items-center justify-center shrink-0 text-[10px] mt-0.5"><i class="fas fa-check"></i></div>
+                            <p class="text-sm font-semibold text-gray-800">Makes groceries last longer — fewer repeat shopping trips</p>
+                        </div>
+                        <div class="flex items-start gap-4 p-3 hover:bg-gray-50 rounded-xl transition-colors -ml-3">
+                            <div class="bg-black text-white w-6 h-6 rounded-full flex items-center justify-center shrink-0 text-[10px] mt-0.5"><i class="fas fa-check"></i></div>
+                            <p class="text-sm font-semibold text-gray-800">No filters, no refills, no hidden costs: recharge and you’re done</p>
+                        </div>
+                    </div>
 
-        <!-- Happy Customers Count -->
-        <div class="mb-10 animate-fade-up" style="animation-delay: 0.4s">
-            <span class="bg-gray-100 text-black text-[10px] md:text-xs font-bold px-4 py-2 rounded-full uppercase tracking-widest border border-gray-200">
-                8K+ Happy Customers | In stock and ready to ship
-            </span>
-        </div>
+                    <!-- Stock Badge & CTA -->
+                    <div class="animate-fade-up" style="animation-delay: 0.4s">
+                        <div class="inline-flex items-center gap-2 mb-6 bg-green-50 text-green-800 px-3 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-wide border border-green-100">
+                            <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+                            In stock and ready to ship
+                        </div>
+                        <button onclick="document.getElementById('country-selection').scrollIntoView({ behavior: 'smooth' })" class="w-full sm:w-auto bg-primary hover:bg-gray-900 text-white font-bold text-xl py-5 px-12 rounded-2xl shadow-xl shadow-black/20 transition-all hover:scale-[1.02] active:scale-95 uppercase tracking-tight flex items-center justify-center gap-3">
+                            <span>GET -75% OFF NOW</span>
+                            <i class="fas fa-arrow-right text-sm"></i>
+                        </button>
+                    </div>
+                </div>
 
-        <!-- MAIN CTA -->
-        <div class="animate-fade-up" style="animation-delay: 0.5s">
-            <button onclick="document.getElementById('country-selection').scrollIntoView({ behavior: 'smooth' })" class="w-full md:w-auto bg-primary hover:bg-opacity-80 text-white font-bold text-xl md:text-2xl py-6 px-20 rounded-full shadow-[0_10px_30px_rgba(0,0,0,0.15)] transition-all hover:scale-105 active:scale-95 uppercase tracking-tighter">
-                GET -75% OFF NOW
-            </button>
-        </div>
-
-        <!-- Trust Bar Icons -->
-        <div class="mt-12 py-8 border-t border-gray-100 animate-fade-up" style="animation-delay: 0.6s">
-            <div class="flex flex-wrap justify-center gap-4 md:gap-10 text-[9px] md:text-[11px] font-bold text-gray-400 uppercase tracking-widest">
-                <div class="flex items-center gap-2"><i class="fas fa-leaf text-black"></i> LONG-LASTING FRESHNESS</div>
-                <div class="flex items-center gap-2"><i class="fas fa-wind text-black"></i> INSTANT ODOR REMOVAL</div>
-                <div class="flex items-center gap-2"><i class="fas fa-sync text-black"></i> NO FILTER REPLACEMENT</div>
-                <div class="flex items-center gap-2"><i class="fas fa-shield-alt text-black"></i> 30-DAY MONEY-BACK GUARANTEE</div>
             </div>
-        </div>
-    </section>
-
-    <!-- COUNTRY SELECTION -->
-    <section id="country-selection" class="py-24 bg-gray-50 border-t border-gray-100">
-        <div class="container mx-auto px-5 text-center">
-            <h2 class="text-3xl md:text-5xl font-bold mb-16 tracking-tight uppercase italic text-black/80">Select your Region</h2>
             
-            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
-                <a href="https://www.fasttrack36.com/PHPWHDRK/2R37J52Q/?uid=47762" class="card-light p-6 rounded-3xl flex flex-col items-center gap-4 group">
-                    <img src="https://flagcdn.com/w80/us.png" class="w-12 h-auto rounded shadow-sm" alt="USA">
-                    <span class="font-bold text-black group-hover:text-black transition">United States</span>
-                    <span class="text-[10px] bg-black/5 text-black px-3 py-1 rounded-full font-bold uppercase">See Offer</span>
-                </a>
-                <a href="https://www.fasttrack36.com/PHPWHDRK/2R37J52Q/?uid=47765" class="card-light p-6 rounded-3xl flex flex-col items-center gap-4 group">
-                    <img src="https://flagcdn.com/w80/gb.png" class="w-12 h-auto rounded shadow-sm" alt="UK">
-                    <span class="font-bold text-black group-hover:text-black transition">United Kingdom</span>
-                    <span class="text-[10px] bg-black/5 text-black px-3 py-1 rounded-full font-bold uppercase">See Offer</span>
-                </a>
-                <a href="https://www.fasttrack36.com/PHPWHDRK/2R37J52Q/?uid=47777" class="card-light p-6 rounded-3xl flex flex-col items-center gap-4 group">
-                    <div class="flex gap-1">
-                        <img src="https://flagcdn.com/w40/de.png" class="w-6 h-auto rounded shadow-sm" alt="DE">
-                        <img src="https://flagcdn.com/w40/at.png" class="w-6 h-auto rounded shadow-sm" alt="AT">
-                        <img src="https://flagcdn.com/w40/ch.png" class="w-6 h-auto rounded shadow-sm" alt="CH">
+            <!-- Trust Bar Icons (Full Width Below) -->
+            <div class="mt-20 pt-10 border-t border-gray-100 animate-fade-up" style="animation-delay: 0.5s">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                    <div class="flex flex-col items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center text-black"><i class="fas fa-leaf"></i></div>
+                        <span class="text-[10px] font-bold uppercase tracking-widest text-gray-500">Long-lasting Freshness</span>
                     </div>
-                    <span class="font-bold text-black group-hover:text-black transition text-sm">DE / AT / CH</span>
-                    <span class="text-[10px] bg-black/5 text-black px-3 py-1 rounded-full font-bold uppercase">See Offer</span>
-                </a>
-                <a href="https://www.fasttrack36.com/PHPWHDRK/2R37J52Q/?uid=47783" class="card-light p-6 rounded-3xl flex flex-col items-center gap-4 group">
-                    <img src="https://flagcdn.com/w80/nl.png" class="w-12 h-auto rounded shadow-sm" alt="NL">
-                    <span class="font-bold text-black group-hover:text-black transition">Netherlands</span>
-                    <span class="text-[10px] bg-black/5 text-black px-3 py-1 rounded-full font-bold uppercase">See Offer</span>
-                </a>
-                <a href="https://www.fasttrack36.com/PHPWHDRK/2R37J52Q/?uid=47780" class="card-light p-6 rounded-3xl flex flex-col items-center gap-4 group">
-                    <div class="flex gap-1">
-                        <img src="https://flagcdn.com/w40/fr.png" class="w-6 h-auto rounded shadow-sm" alt="FR">
-                        <img src="https://flagcdn.com/w40/be.png" class="w-6 h-auto rounded shadow-sm" alt="BE">
+                    <div class="flex flex-col items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center text-black"><i class="fas fa-wind"></i></div>
+                        <span class="text-[10px] font-bold uppercase tracking-widest text-gray-500">Instant Odor Removal</span>
                     </div>
-                    <span class="font-bold text-black group-hover:text-black transition">France / Belgium</span>
-                    <span class="text-[10px] bg-black/5 text-black px-3 py-1 rounded-full font-bold uppercase">See Offer</span>
+                    <div class="flex flex-col items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center text-black"><i class="fas fa-sync"></i></div>
+                        <span class="text-[10px] font-bold uppercase tracking-widest text-gray-500">No Filter Replacement</span>
+                    </div>
+                    <div class="flex flex-col items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center text-black"><i class="fas fa-shield-alt"></i></div>
+                        <span class="text-[10px] font-bold uppercase tracking-widest text-gray-500">30-Day Money-Back</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- COUNTRY SELECTION (SEGUNDA SESSÃO) -->
+    <section id="country-selection" class="py-24 bg-gray-50 border-t border-gray-100">
+        <div class="container mx-auto px-6 max-w-7xl text-center">
+            <h2 class="text-3xl md:text-5xl font-extrabold mb-16 tracking-tight text-black">Select your Region</h2>
+            
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                <!-- Cards com hover effect melhorado -->
+                <a href="https://www.fasttrack36.com/PHPWHDRK/2R37J52Q/?uid=47762" class="card-light p-8 rounded-3xl flex flex-col items-center gap-5 group bg-white">
+                    <img src="https://flagcdn.com/w80/us.png" class="w-14 h-auto rounded-lg shadow-md" alt="USA">
+                    <span class="font-bold text-lg text-black group-hover:text-gray-600 transition">United States</span>
+                    <span class="text-[10px] bg-black text-white px-4 py-1.5 rounded-full font-bold uppercase group-hover:bg-gray-800 transition">See Offer</span>
                 </a>
-                <a href="https://www.fasttrack36.com/PHPWHDRK/2R37J52Q/?uid=47768" class="card-light p-6 rounded-3xl flex flex-col items-center gap-4 group">
-                    <img src="https://flagcdn.com/w80/ca.png" class="w-12 h-auto rounded shadow-sm" alt="CA">
-                    <span class="font-bold text-black group-hover:text-black transition">Canada</span>
-                    <span class="text-[10px] bg-black/5 text-black px-3 py-1 rounded-full font-bold uppercase">See Offer</span>
+                <a href="https://www.fasttrack36.com/PHPWHDRK/2R37J52Q/?uid=47765" class="card-light p-8 rounded-3xl flex flex-col items-center gap-5 group bg-white">
+                    <img src="https://flagcdn.com/w80/gb.png" class="w-14 h-auto rounded-lg shadow-md" alt="UK">
+                    <span class="font-bold text-lg text-black group-hover:text-gray-600 transition">United Kingdom</span>
+                    <span class="text-[10px] bg-black text-white px-4 py-1.5 rounded-full font-bold uppercase group-hover:bg-gray-800 transition">See Offer</span>
                 </a>
-                <a href="https://www.fasttrack36.com/PHPWHDRK/2R37J52Q/?uid=47774" class="card-light p-6 rounded-3xl flex flex-col items-center gap-4 group">
-                    <i class="fas fa-euro-sign text-2xl text-black"></i>
-                    <span class="font-bold text-black group-hover:text-black transition">Europe (General)</span>
-                    <span class="text-[10px] bg-black/5 text-black px-3 py-1 rounded-full font-bold uppercase">See Offer</span>
+                <a href="https://www.fasttrack36.com/PHPWHDRK/2R37J52Q/?uid=47777" class="card-light p-8 rounded-3xl flex flex-col items-center gap-5 group bg-white">
+                    <div class="flex gap-1.5">
+                        <img src="https://flagcdn.com/w40/de.png" class="w-8 h-auto rounded shadow-sm" alt="DE">
+                        <img src="https://flagcdn.com/w40/at.png" class="w-8 h-auto rounded shadow-sm" alt="AT">
+                        <img src="https://flagcdn.com/w40/ch.png" class="w-8 h-auto rounded shadow-sm" alt="CH">
+                    </div>
+                    <span class="font-bold text-lg text-black group-hover:text-gray-600 transition">DE / AT / CH</span>
+                    <span class="text-[10px] bg-black text-white px-4 py-1.5 rounded-full font-bold uppercase group-hover:bg-gray-800 transition">See Offer</span>
                 </a>
-                <a href="https://www.fasttrack36.com/PHPWHDRK/2R37J52Q/" class="card-light p-6 rounded-3xl flex flex-col items-center gap-4 group">
-                    <i class="fas fa-globe text-2xl text-gray-300"></i>
-                    <span class="font-bold text-black group-hover:text-black transition">Other Countries</span>
-                    <span class="text-[10px] bg-gray-100 text-gray-500 px-3 py-1 rounded-full font-bold uppercase">See Offer</span>
+                <a href="https://www.fasttrack36.com/PHPWHDRK/2R37J52Q/?uid=47783" class="card-light p-8 rounded-3xl flex flex-col items-center gap-5 group bg-white">
+                    <img src="https://flagcdn.com/w80/nl.png" class="w-14 h-auto rounded-lg shadow-md" alt="NL">
+                    <span class="font-bold text-lg text-black group-hover:text-gray-600 transition">Netherlands</span>
+                    <span class="text-[10px] bg-black text-white px-4 py-1.5 rounded-full font-bold uppercase group-hover:bg-gray-800 transition">See Offer</span>
+                </a>
+                <a href="https://www.fasttrack36.com/PHPWHDRK/2R37J52Q/?uid=47780" class="card-light p-8 rounded-3xl flex flex-col items-center gap-5 group bg-white">
+                    <div class="flex gap-1.5">
+                        <img src="https://flagcdn.com/w40/fr.png" class="w-8 h-auto rounded shadow-sm" alt="FR">
+                        <img src="https://flagcdn.com/w40/be.png" class="w-8 h-auto rounded shadow-sm" alt="BE">
+                    </div>
+                    <span class="font-bold text-lg text-black group-hover:text-gray-600 transition">France / Belgium</span>
+                    <span class="text-[10px] bg-black text-white px-4 py-1.5 rounded-full font-bold uppercase group-hover:bg-gray-800 transition">See Offer</span>
+                </a>
+                <a href="https://www.fasttrack36.com/PHPWHDRK/2R37J52Q/?uid=47768" class="card-light p-8 rounded-3xl flex flex-col items-center gap-5 group bg-white">
+                    <img src="https://flagcdn.com/w80/ca.png" class="w-14 h-auto rounded-lg shadow-md" alt="CA">
+                    <span class="font-bold text-lg text-black group-hover:text-gray-600 transition">Canada</span>
+                    <span class="text-[10px] bg-black text-white px-4 py-1.5 rounded-full font-bold uppercase group-hover:bg-gray-800 transition">See Offer</span>
+                </a>
+                <a href="https://www.fasttrack36.com/PHPWHDRK/2R37J52Q/?uid=47774" class="card-light p-8 rounded-3xl flex flex-col items-center gap-5 group bg-white">
+                    <i class="fas fa-euro-sign text-3xl text-gray-300"></i>
+                    <span class="font-bold text-lg text-black group-hover:text-gray-600 transition">Europe (General)</span>
+                    <span class="text-[10px] bg-black text-white px-4 py-1.5 rounded-full font-bold uppercase group-hover:bg-gray-800 transition">See Offer</span>
+                </a>
+                <a href="https://www.fasttrack36.com/PHPWHDRK/2R37J52Q/" class="card-light p-8 rounded-3xl flex flex-col items-center gap-5 group bg-white">
+                    <i class="fas fa-globe text-3xl text-gray-300"></i>
+                    <span class="font-bold text-lg text-black group-hover:text-gray-600 transition">Other Countries</span>
+                    <span class="text-[10px] bg-gray-100 text-gray-500 border border-gray-200 px-4 py-1.5 rounded-full font-bold uppercase group-hover:bg-gray-200 transition">See Offer</span>
                 </a>
             </div>
         </div>
@@ -259,23 +320,23 @@
     <!-- FAQ -->
     <section class="bg-white py-24">
         <div class="container mx-auto px-6 max-w-3xl">
-            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 uppercase italic tracking-tighter text-black">Questions & Answers</h2>
+            <h2 class="text-3xl md:text-4xl font-extrabold text-center mb-12 tracking-tight text-black">Questions & Answers</h2>
             <div class="space-y-4">
-                <details class="group card-light rounded-2xl shadow-sm transition-all">
-                    <summary class="p-6 font-bold cursor-pointer flex justify-between items-center text-lg list-none">
+                <details class="group card-light rounded-2xl shadow-sm transition-all bg-white">
+                    <summary class="p-6 font-bold cursor-pointer flex justify-between items-center text-lg list-none select-none">
                         <span>How does Ozoori work?</span>
-                        <span class="text-black transition-transform group-open:rotate-45"><i class="fas fa-plus text-sm"></i></span>
+                        <span class="text-black transition-transform group-open:rotate-45 duration-300"><i class="fas fa-plus text-sm"></i></span>
                     </summary>
-                    <div class="p-6 pt-0 text-gray-600 leading-relaxed border-t border-gray-50">
+                    <div class="p-6 pt-0 text-gray-600 leading-relaxed border-t border-gray-50 animate-fade-in">
                         Ozoori uses advanced ionic technology to neutralize odors and bacteria at the molecular level, keeping your fridge fresh and your food lasting longer.
                     </div>
                 </details>
-                <details class="group card-light rounded-2xl shadow-sm transition-all">
-                    <summary class="p-6 font-bold cursor-pointer flex justify-between items-center text-lg list-none">
+                <details class="group card-light rounded-2xl shadow-sm transition-all bg-white">
+                    <summary class="p-6 font-bold cursor-pointer flex justify-between items-center text-lg list-none select-none">
                         <span>Do I need to replace filters?</span>
-                        <span class="text-black transition-transform group-open:rotate-45"><i class="fas fa-plus text-sm"></i></span>
+                        <span class="text-black transition-transform group-open:rotate-45 duration-300"><i class="fas fa-plus text-sm"></i></span>
                     </summary>
-                    <div class="p-6 pt-0 text-gray-600 leading-relaxed border-t border-gray-50">
+                    <div class="p-6 pt-0 text-gray-600 leading-relaxed border-t border-gray-50 animate-fade-in">
                         No! Ozoori is designed to be filter-free. Simply recharge the device when needed and it's ready to go again.
                     </div>
                 </details>
@@ -284,8 +345,8 @@
     </section>
 
     <!-- FOOTER -->
-    <footer class="bg-gray-50 pt-24 pb-12 border-t border-gray-100">
-        <div class="container mx-auto px-6 text-center">
+    <footer class="bg-gray-50 pt-24 pb-12 border-t border-gray-200">
+        <div class="container mx-auto px-6 text-center max-w-7xl">
             <div class="mb-16">
                 <div class="inline-flex items-center gap-3 bg-white px-8 py-4 rounded-full border border-gray-200 shadow-sm">
                     <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
@@ -298,9 +359,22 @@
                 <p>Managed by: Haur B.V. (RSIN: 867612939)</p>
                 <p>Amsterdam, Netherlands | Manufacturer: STR.VERT CONSULTANTS LTD</p>
                 <div class="pt-6 flex flex-col md:flex-row justify-center items-center gap-8 font-bold">
-                    <a href="mailto:hello@ozoori.com" class="hover:text-black transition text-gray-600"><i class="fas fa-envelope mr-2 text-black"></i> hello@ozoori.com</a>
-                    <a href="tel:+14842635085" class="hover:text-black transition text-gray-600"><i class="fas fa-phone mr-2 text-black"></i> +1 (484) 263-5085</a>
+                    <a href="mailto:support@get-ozoori.com" class="hover:text-black transition text-gray-600"><i class="fas fa-envelope mr-2 text-black"></i> support@get-ozoori.com</a>
+                    <a href="tel:+12395102199" class="hover:text-black transition text-gray-600"><i class="fas fa-phone mr-2 text-black"></i> +1 (239) 510-2199</a>
                 </div>
+            </div>
+
+            <div class="text-[10px] text-gray-400 italic mb-12 border-t border-gray-200 pt-12 max-w-4xl mx-auto">
+                <strong>Important:</strong> Ozoori is a household product. Results may vary depending on usage conditions. Not intended to treat any medical condition.
+            </div>
+
+            <!-- LEGAL LINKS -->
+            <div class="flex flex-wrap justify-center gap-6 md:gap-10 text-[10px] font-bold uppercase tracking-widest mb-12 text-gray-500">
+                <button onclick="openModal('privacy')" class="hover:text-black transition border-b border-transparent hover:border-black pb-0.5">Privacy Policy</button>
+                <button onclick="openModal('terms')" class="hover:text-black transition border-b border-transparent hover:border-black pb-0.5">Terms & Conditions</button>
+                <button onclick="openModal('shipping')" class="hover:text-black transition border-b border-transparent hover:border-black pb-0.5">Shipping & Delivery</button>
+                <button onclick="openModal('returns')" class="hover:text-black transition border-b border-transparent hover:border-black pb-0.5">Returns & Refund</button>
+                <button onclick="openModal('contact')" class="hover:text-black transition border-b border-transparent hover:border-black pb-0.5">Contact Us</button>
             </div>
 
             <div class="text-[9px] text-gray-400 tracking-[0.2em] uppercase">
@@ -312,9 +386,9 @@
 
     <!-- MODAL -->
     <div id="policyModal" class="modal" onclick="if(event.target == this) closeModal()">
-        <div class="modal-content !bg-white relative text-left shadow-2xl">
-            <button onclick="closeModal()" class="sticky top-0 float-right text-4xl font-bold p-2 text-gray-500 hover:text-red-500 transition-colors">&times;</button>
-            <div id="modalBody" class="pt-6 text-gray-600"></div>
+        <div class="modal-content text-left">
+            <button onclick="closeModal()" class="sticky top-0 float-right text-4xl font-bold p-2 text-gray-400 hover:text-red-500 transition-colors bg-white rounded-full z-10 w-12 h-12 flex items-center justify-center shadow-sm">&times;</button>
+            <div id="modalBody" class="pt-6 text-gray-600 text-sm leading-relaxed space-y-6"></div>
         </div>
     </div>
 
@@ -331,19 +405,93 @@
 
         const modalContent = {
             howtouse: `
-                <h2 class="text-2xl font-bold mb-4 text-black uppercase italic tracking-tighter border-b border-gray-100 pb-2">How to Use</h2>
-                <p class="mb-4">1. Charge your Ozoori fully before the first use.</p>
-                <p class="mb-4">2. Place it in any shelf of your fridge.</p>
-                <p>3. Let it work silently to neutralize odors and preserve freshness.</p>
+                <h2 class="text-3xl font-extrabold mb-6 text-black tracking-tight border-b border-gray-100 pb-4">How to Use</h2>
+                <div class="space-y-4">
+                    <div class="flex gap-4">
+                        <span class="font-bold text-2xl text-gray-200">01</span>
+                        <p>Charge your Ozoori fully before the first use using the provided USB cable.</p>
+                    </div>
+                    <div class="flex gap-4">
+                        <span class="font-bold text-2xl text-gray-200">02</span>
+                        <p>Place it in any shelf of your fridge. For best results, keep it somewhat central.</p>
+                    </div>
+                    <div class="flex gap-4">
+                        <span class="font-bold text-2xl text-gray-200">03</span>
+                        <p>Let it work silently. There are no buttons to press for daily operation; it cycles automatically to neutralize odors.</p>
+                    </div>
+                </div>
             `,
             specs: `
-                <h2 class="text-2xl font-bold mb-4 text-black uppercase italic tracking-tighter border-b border-gray-100 pb-2">Ozoori Specifications</h2>
-                <div class="info-grid space-y-2 text-sm">
-                    <div class="flex justify-between border-b border-gray-50 py-2"><span>Technology</span><span class="font-bold text-black">Active Ionic Neutralization</span></div>
-                    <div class="flex justify-between border-b border-gray-50 py-2"><span>Maintenance</span><span class="font-bold text-black">Filter-Free / Rechargeable</span></div>
-                    <div class="flex justify-between border-b border-gray-50 py-2"><span>Application</span><span class="font-bold text-black">Refrigerators / Small Spaces</span></div>
-                    <div class="flex justify-between border-b border-gray-50 py-2"><span>Satisfaction</span><span class="font-bold text-black">30-Day Money-Back Guarantee</span></div>
+                <h2 class="text-3xl font-extrabold mb-6 text-black tracking-tight border-b border-gray-100 pb-4">Specifications</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                    <div class="p-4 bg-gray-50 rounded-xl">
+                        <span class="block text-xs text-gray-400 uppercase tracking-wider font-bold mb-1">Technology</span>
+                        <span class="font-bold text-black text-lg">Active Ionic Neutralization</span>
+                    </div>
+                    <div class="p-4 bg-gray-50 rounded-xl">
+                        <span class="block text-xs text-gray-400 uppercase tracking-wider font-bold mb-1">Battery</span>
+                        <span class="font-bold text-black text-lg">Rechargeable Li-ion</span>
+                    </div>
+                    <div class="p-4 bg-gray-50 rounded-xl">
+                        <span class="block text-xs text-gray-400 uppercase tracking-wider font-bold mb-1">Maintenance</span>
+                        <span class="font-bold text-black text-lg">Filter-Free Design</span>
+                    </div>
+                    <div class="p-4 bg-gray-50 rounded-xl">
+                        <span class="block text-xs text-gray-400 uppercase tracking-wider font-bold mb-1">Application</span>
+                        <span class="font-bold text-black text-lg">Fridges, Shoe Racks, Closets</span>
+                    </div>
                 </div>
+            `,
+            terms: `
+                <h2 class="text-2xl font-bold mb-4 text-black uppercase tracking-tighter border-b pb-2">Terms & Conditions</h2>
+                <p>Dear valued customer, please read these Terms of Service (hereinafter – “Terms”) carefully before using any feature of our website or purchasing any of the products therein.</p>
+                <h4 class="font-bold mt-4">Who We Are</h4>
+                <p>Ozoori is a brand name used and operated by a business entity UAB Rara Digital, company No. 306641699, registered in Lithuania.</p>
+                <h4 class="font-bold mt-4">Our Products</h4>
+                <p>The Website is an online store dedicated to selling consumer goods. Our Products are not suitable for industrial or professional use.</p>
+                <h4 class="font-bold mt-4">Delivery</h4>
+                <p>We process your order within 1-3 business days. Delivery typically takes 5 to 20 calendar days.</p>
+                <h4 class="font-bold mt-4">Returns & Refunds</h4>
+                <p>If you are unhappy with your purchased Products you may return them and get a full refund within 30 days from the delivery date.</p>
+                <h4 class="font-bold mt-4">Contact Information</h4>
+                <p>Email – support@get-ozoori.com<br>Phone – +1 (239) 510-2199</p>
+                <p class="text-xs mt-4 text-gray-400">*Full Terms & Conditions are available upon request or in the official documentation.</p>
+            `,
+            privacy: `
+                <h2 class="text-2xl font-bold mb-4 text-black uppercase tracking-tighter border-b pb-2">Privacy Policy</h2>
+                <p>This Privacy Policy answers how we collect, use and store information about you whenever you are visiting our website.</p>
+                <h4 class="font-bold mt-4">Who Is Responsible</h4>
+                <p>Ozoori (UAB Rara Digital) is responsible for handling your personal data.</p>
+                <h4 class="font-bold mt-4">Information We Collect</h4>
+                <p>We collect first name, last name, delivery address, phone, email, and payment info to process your orders.</p>
+                <h4 class="font-bold mt-4">Cookies</h4>
+                <p>We use cookies to make our website work efficiently. You can configure your browser to decline cookies.</p>
+                <h4 class="font-bold mt-4">Contact</h4>
+                <p>If you have questions about your personal information, contact support@get-ozoori.com.</p>
+            `,
+            shipping: `
+                <h2 class="text-2xl font-bold mb-4 text-black uppercase tracking-tighter border-b pb-2">Shipping & Delivery</h2>
+                <p><strong>Shipping:</strong> Shipping costs will be calculated at checkout. We ship worldwide.</p>
+                <p><strong>Processing:</strong> Most items are dispatched within 12 hours. Delivery takes 5-12 business days.</p>
+                <p><strong>Tracking:</strong> You will receive a tracking ID via email. Please allow 1-3 business days for tracking to update.</p>
+                <p><strong>Issues:</strong> We are not responsible for delays caused by customs or natural occurrences.</p>
+            `,
+            returns: `
+                <h2 class="text-2xl font-bold mb-4 text-black uppercase tracking-tighter border-b pb-2">Returns & Cancellation</h2>
+                <p><strong>Eligibility:</strong> You may return products within 30 days of delivery if unsatisfied. Products must be in original packaging.</p>
+                <p><strong>Process:</strong> Contact support@get-ozoori.com to initiate a return. Do not send products back without authorization.</p>
+                <p><strong>Refunds:</strong> Refunds are processed within 5-7 business days after we receive the return.</p>
+                <p><strong>Cancellation:</strong> Orders can be cancelled within 12 hours of purchase if not yet shipped.</p>
+            `,
+            contact: `
+                <h2 class="text-2xl font-bold mb-4 text-black uppercase tracking-tighter border-b pb-2">Contact Us</h2>
+                <p class="mb-4">If you have any questions about your order or our products, please don’t hesitate to contact us:</p>
+                <p class="font-bold">By Phone:</p>
+                <p>+1 (239) 510-2199</p>
+                <p class="font-bold mt-4">By Email:</p>
+                <p>support@get-ozoori.com</p>
+                <p class="font-bold mt-4">Company Address:</p>
+                <p>UAB Rara Digital, Gedimino pr., 20, Vilnius, Lithuania</p>
             `
         };
 
@@ -355,6 +503,14 @@
         function closeModal() {
             document.getElementById('policyModal').style.display = "none";
             document.body.style.overflow = "auto";
+        }
+        
+        // Close modal on click outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('policyModal');
+            if (event.target == modal) {
+                closeModal();
+            }
         }
     </script>
 </body>
