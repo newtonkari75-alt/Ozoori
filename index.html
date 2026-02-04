@@ -1,24 +1,47 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
-    <!-- PERFORMANCE & RESOURCE HINTS -->
+    <!-- PERFORMANCE & CORE VITALS -->
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="referrer" content="no-referrer-when-downgrade">
-    <link rel="dns-prefetch" href="//cdn.tailwindcss.com">
-    <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
-    <link rel="dns-prefetch" href="//fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta name="theme-color" content="#ffffff">
+
+    <!-- PRE-CONNECTIONS & PRELOADS (SPEED OPTIMIZATION) -->
+    <link rel="preconnect" href="https://cdn.tailwindcss.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <!-- FAVICON ATUALIZADO -->
-    <link rel="icon" type="image/png" href="images/faviconV2.png">
-
-    <!-- SEO AVANÇADO -->
-    <title>Ozoori – Official Odor Neutralizer & Groceries Freshness Support</title>
-    <meta name="description" content="Ozoori neutralizes fridge odors at the root, helps reduce mold and makes groceries last longer. Get 75% OFF today.">
+    <link rel="preconnect" href="https://api.raads.com.br" crossorigin>
+    <link rel="dns-prefetch" href="//cdn.tailwindcss.com">
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link rel="dns-prefetch" href="//api.raads.com.br">
     
+    <!-- MAIN SEO META TAGS -->
+    <title>Ozoori™ Review | Authorized Information & Availability Portal</title>
+    <meta name="title" content="Ozoori™ Review | Authorized Information & Availability Portal">
+    <meta name="description" content="Independent review of Ozoori fridge odor neutralizer. Analysis of pros, cons, and official availability. Verify stock and discounts here.">
+    <meta name="keywords" content="Ozoori review, fridge odor neutralizer, Ozoori analysis, food freshness support">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <link rel="canonical" href="https://ozoori.vercel.app/">
+    
+    <!-- INTERNATIONAL TARGETING -->
+    <meta http-equiv="content-language" content="en, de, fr, nl, pt, es, it, sv, da, fi, no">
+    <meta name="geo.region" content="Global">
+
+    <!-- OPEN GRAPH / FACEBOOK -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://ozoori.vercel.app/">
+    <meta property="og:title" content="Ozoori™ - Independent Product Analysis">
+    <meta property="og:description" content="Is it worth it? Read our analysis on freshness support and odor neutralization.">
+    <meta property="og:image" content="https://ozoori.vercel.app/images/ozori.jpg">
+    <meta property="og:site_name" content="Ozoori Info Portal">
+
+    <!-- FAVICON -->
+    <link rel="icon" type="image/png" href="images/faviconV2.png">
+    <link rel="apple-touch-icon" href="images/faviconV2.png">
+
     <!-- LIBRARIES -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://api.raads.com.br/code/8300-762b9469-8365-424b-84e6-0d592370dec3"></script>
@@ -57,13 +80,9 @@
             border-radius: 24px;
             overflow: hidden;
             background-color: #f9fafb;
-            /* Mobile: 1:1 (Quadrado) ocupa a maior largura possível sem empurrar o texto muito para baixo */
             aspect-ratio: 1 / 1; 
         }
         @media (min-width: 1024px) {
-            /* Desktop: Alterado de 4/3 para 1/1 (Quadrado). 
-               Isso faz a imagem ficar MAIOR verticalmente, alinhando melhor com a altura do texto 
-               e ocupando mais presença na tela. */
             .carousel-wrapper { aspect-ratio: 1 / 1; }
         }
 
@@ -84,7 +103,6 @@
             opacity: 1;
             z-index: 10;
         }
-        /* Object-fit: contain garante que a imagem use TODO o espaço disponível sem cortar */
         .carousel-slide img, .carousel-slide video {
             width: 100%;
             height: 100%;
@@ -124,6 +142,20 @@
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
         }
         
+        /* Cookie Banner */
+        #cookie-consent {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #fff;
+            border-top: 1px solid #e5e5e5;
+            padding: 20px;
+            z-index: 9999;
+            box-shadow: 0 -4px 10px rgba(0,0,0,0.05);
+            display: none; 
+        }
+        
         /* Typography Refinements */
         h1, h2, h3 { letter-spacing: -0.03em; }
         .tracking-widest { letter-spacing: 0.1em; }
@@ -131,33 +163,49 @@
 </head>
 <body class="overflow-x-hidden selection:bg-black selection:text-white">
 
-    <!-- BARRA DE TOPO -->
-    <div class="bg-primary text-white text-[10px] md:text-xs font-bold py-3 text-center uppercase tracking-[0.2em] px-5 sticky top-0 z-[60]">
-        OFERTA ESPECIAL POR TEMPO LIMITADO | 75% DE DESCONTO
+    <!-- BARRA DE TOPO (DISCLOSURE) -->
+    <div class="bg-gray-100 text-gray-600 text-[9px] md:text-[10px] font-bold py-2 text-center uppercase tracking-widest px-5" data-i18n="disclosure">
+        Advertorial Review | Independent Authorized Portal
+    </div>
+    <div class="bg-primary text-white text-[10px] md:text-xs font-bold py-3 text-center uppercase tracking-[0.2em] px-5 sticky top-0 z-[60]" data-i18n="top_bar">
+        LIMITED AVAILABILITY | CHECK OFFICIAL DISCOUNTS
     </div>
 
-    <!-- NAVBAR - ALINHAMENTO PADRONIZADO -->
+    <!-- NAVBAR -->
     <nav class="bg-white/80 border-b border-gray-100 py-4 backdrop-blur-xl sticky top-[38px] z-50">
-        <div class="container mx-auto px-6 md:px-12 max-w-7xl flex justify-center md:justify-start items-center">
+        <div class="container mx-auto px-6 md:px-12 max-w-7xl flex justify-between items-center">
             <div class="flex items-center">
                 <img src="images/logo_Ozoori_black.svg" alt="Ozoori Logo" class="h-8 md:h-10 w-auto">
+            </div>
+            <!-- Language Selector -->
+            <div>
+                <select id="lang-selector" class="bg-transparent text-xs font-bold uppercase tracking-wider border border-gray-200 rounded-md px-2 py-1 outline-none focus:border-black cursor-pointer text-gray-600 hover:text-black transition">
+                    <option value="en">EN</option>
+                    <option value="es">ES</option>
+                    <option value="pt">PT</option>
+                    <option value="de">DE</option>
+                    <option value="fr">FR</option>
+                    <option value="it">IT</option>
+                    <option value="nl">NL</option>
+                    <option value="sv">SV</option>
+                    <option value="da">DA</option>
+                    <option value="fi">FI</option>
+                    <option value="no">NO</option>
+                </select>
             </div>
         </div>
     </nav>
 
-    <!-- HERO SECTION - ALINHAMENTO CORRIGIDO -->
+    <!-- HERO SECTION -->
     <section class="bg-white py-12 md:py-20 border-b border-gray-50 overflow-hidden">
         <div class="container mx-auto px-6 md:px-12 max-w-7xl">
-            <!-- Grid gap ajustado para lg:gap-16 (reduzido de 20) para permitir que a coluna da imagem seja mais larga -->
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
                 
-                <!-- COLUNA 1: CARROSSEL (Imagem) -->
-                <!-- No Mobile: Ordem 1 (Aparece Primeiro) | No Desktop: Ordem 1 (Esquerda) -->
+                <!-- COLUNA 1: CARROSSEL -->
                 <div class="w-full order-1 lg:order-1">
                     <div class="carousel-wrapper shadow-2xl shadow-gray-200/50">
                         <div class="carousel-slide active"><img src="images/ozori.jpg" alt="Ozoori Display 1"></div>
                         <div class="carousel-slide">
-                            <!-- Video também com object-fit: contain -->
                             <video autoplay muted loop playsinline class="w-full h-full object-contain">
                                 <source src="images/ozori11.mp4" type="video/mp4">
                             </video>
@@ -172,46 +220,45 @@
                     </div>
                 </div>
 
-                <!-- COLUNA 2: CONTEÚDO HERO (Texto) -->
-                <!-- No Mobile: Ordem 2 (Aparece em Baixo) | No Desktop: Ordem 2 (Direita) -->
+                <!-- COLUNA 2: CONTEÚDO HERO -->
                 <div class="w-full order-2 lg:order-2 text-left flex flex-col justify-center h-full">
                     <!-- Social Proof -->
                     <div class="flex items-center gap-3 mb-6 animate-fade-up">
                         <div class="flex text-yellow-400 text-sm gap-0.5">
                             <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                         </div>
-                        <span class="text-gray-500 font-bold text-xs uppercase tracking-widest border-l border-gray-200 pl-3">
-                            4.7 | 1000+ Verified Reviews
+                        <span class="text-gray-500 font-bold text-xs uppercase tracking-widest border-l border-gray-200 pl-3" data-i18n="reviews">
+                            4.7 | 1000+ Verified User Reviews
                         </span>
                     </div>
                     
                     <!-- Headline -->
-                    <h1 class="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold text-black mb-6 leading-[1.15] animate-fade-up" style="animation-delay: 0.1s">
-                        Fridge Odor Is <span class="text-gray-400">Wasted Money</span> in Disguise.
+                    <h1 class="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold text-black mb-6 leading-[1.15] animate-fade-up" style="animation-delay: 0.1s" data-i18n="headline">
+                        Address Fridge Odors & Support Freshness.
                     </h1>
                     
                     <!-- Subheadline -->
-                    <p class="text-gray-600 text-lg mb-8 leading-relaxed font-medium max-w-xl animate-fade-up" style="animation-delay: 0.2s">
-                        If it smells off, something’s breaking down — and you’re paying for it. Stop the cycle today.
+                    <p class="text-gray-600 text-lg mb-8 leading-relaxed font-medium max-w-xl animate-fade-up" style="animation-delay: 0.2s" data-i18n="subheadline">
+                        Unpleasant smells often indicate breakdown. See how Ozoori works to support a fresher environment for your groceries.*
                     </p>
 
                     <!-- Features List -->
                     <div class="space-y-4 mb-10 animate-fade-up" style="animation-delay: 0.3s">
                         <div class="flex items-start gap-4">
                             <div class="bg-black text-white w-5 h-5 rounded-full flex items-center justify-center shrink-0 text-[10px] mt-1"><i class="fas fa-check"></i></div>
-                            <p class="text-sm md:text-base font-semibold text-gray-800">Neutralizes odors at the root (not sprays)</p>
+                            <p class="text-sm md:text-base font-semibold text-gray-800" data-i18n="feat1">Designed to neutralize odors at the source.</p>
                         </div>
                         <div class="flex items-start gap-4">
                             <div class="bg-black text-white w-5 h-5 rounded-full flex items-center justify-center shrink-0 text-[10px] mt-1"><i class="fas fa-check"></i></div>
-                            <p class="text-sm md:text-base font-semibold text-gray-800">Helps reduce mold and bacteria in humidity</p>
+                            <p class="text-sm md:text-base font-semibold text-gray-800" data-i18n="feat2">Assists in reducing mold/bacteria in humid conditions.</p>
                         </div>
                         <div class="flex items-start gap-4">
                             <div class="bg-black text-white w-5 h-5 rounded-full flex items-center justify-center shrink-0 text-[10px] mt-1"><i class="fas fa-check"></i></div>
-                            <p class="text-sm md:text-base font-semibold text-gray-800">Makes groceries last longer</p>
+                            <p class="text-sm md:text-base font-semibold text-gray-800" data-i18n="feat3">Supports longevity of fresh produce.</p>
                         </div>
                         <div class="flex items-start gap-4">
                             <div class="bg-black text-white w-5 h-5 rounded-full flex items-center justify-center shrink-0 text-[10px] mt-1"><i class="fas fa-check"></i></div>
-                            <p class="text-sm md:text-base font-semibold text-gray-800">No filters, no refills, no hidden costs</p>
+                            <p class="text-sm md:text-base font-semibold text-gray-800" data-i18n="feat4">Filter-free technology: One-time purchase.</p>
                         </div>
                     </div>
 
@@ -219,57 +266,46 @@
                     <div class="animate-fade-up" style="animation-delay: 0.4s">
                         <div class="inline-flex items-center gap-2 mb-6 bg-green-50 text-green-800 px-3 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-wide border border-green-100">
                             <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
-                            In stock and ready to ship
+                            <span data-i18n="stock">High Demand - Check Availability</span>
                         </div>
-                        <button onclick="document.getElementById('country-selection').scrollIntoView({ behavior: 'smooth' })" class="w-full sm:w-auto bg-primary hover:bg-gray-900 text-white font-bold text-lg md:text-xl py-4 md:py-5 px-10 md:px-12 rounded-2xl shadow-xl shadow-black/20 transition-all hover:scale-[1.02] active:scale-95 uppercase tracking-tight flex items-center justify-center gap-3">
-                            <span>GET -75% OFF NOW</span>
-                            <i class="fas fa-arrow-right text-sm"></i>
-                        </button>
-                    </div>
+                        
+                        <!-- Buttons Container -->
+                        <div class="flex flex-col sm:flex-row gap-4">
+                            <button onclick="document.getElementById('country-selection').scrollIntoView({ behavior: 'smooth' })" class="flex-1 bg-primary hover:bg-gray-900 text-white font-bold text-lg md:text-xl py-4 md:py-5 px-6 rounded-2xl shadow-xl shadow-black/20 transition-all hover:scale-[1.02] active:scale-95 uppercase tracking-tight flex items-center justify-center gap-3">
+                                <span data-i18n="cta_check">Check Official Availability</span>
+                                <i class="fas fa-arrow-right text-sm"></i>
+                            </button>
+                            
+                            <a href="https://www.fasttrack36.com/PHPWHDRK/2R37J52Q/" class="flex-1 bg-white border-2 border-gray-100 hover:border-black text-black font-bold text-lg md:text-xl py-4 md:py-5 px-6 rounded-2xl transition-all hover:scale-[1.02] active:scale-95 uppercase tracking-tight flex items-center justify-center gap-3 text-center">
+                                <span data-i18n="cta_read">Read More</span>
+                                <i class="fas fa-book-open text-sm"></i>
+                            </a>
+                        </div>
 
-                    <!-- Trust Bar (Integrada na Coluna do Texto no Desktop para Alinhamento) -->
-                    <div class="mt-10 pt-8 border-t border-gray-100 animate-fade-up" style="animation-delay: 0.5s">
-                        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center md:text-left">
-                            <div class="flex flex-col md:flex-row items-center gap-2">
-                                <i class="fas fa-leaf text-black text-lg"></i>
-                                <span class="text-[10px] font-bold uppercase tracking-widest text-gray-500">Freshness</span>
-                            </div>
-                            <div class="flex flex-col md:flex-row items-center gap-2">
-                                <i class="fas fa-wind text-black text-lg"></i>
-                                <span class="text-[10px] font-bold uppercase tracking-widest text-gray-500">No Odor</span>
-                            </div>
-                            <div class="flex flex-col md:flex-row items-center gap-2">
-                                <i class="fas fa-sync text-black text-lg"></i>
-                                <span class="text-[10px] font-bold uppercase tracking-widest text-gray-500">No Filters</span>
-                            </div>
-                            <div class="flex flex-col md:flex-row items-center gap-2">
-                                <i class="fas fa-shield-alt text-black text-lg"></i>
-                                <span class="text-[10px] font-bold uppercase tracking-widest text-gray-500">Guarantee</span>
-                            </div>
-                        </div>
+                        <p class="text-[10px] text-gray-400 mt-3" data-i18n="disclaimer_small">*Results may vary based on usage.</p>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
 
-    <!-- COUNTRY SELECTION (PADRONIZADA) -->
-    <section id="country-selection" class="py-24 bg-gray-50 border-t border-gray-100">
+    <!-- COUNTRY SELECTION -->
+    <section id="country-selection" class="py-24 bg-gray-50 border-t border-b border-gray-100">
         <div class="container mx-auto px-6 md:px-12 max-w-7xl text-center">
-            <h2 class="text-3xl md:text-5xl font-extrabold mb-16 tracking-tight text-black">Select your Region</h2>
+            <h2 class="text-3xl md:text-5xl font-extrabold mb-4 tracking-tight text-black" data-i18n="region_title">Verify Official Availability</h2>
+            <p class="text-gray-500 mb-12" data-i18n="region_sub">Select your region to check stock and valid discounts.</p>
             
             <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                 <!-- Cards -->
                 <a href="https://www.fasttrack36.com/PHPWHDRK/2R37J52Q/?uid=47762" class="card-light p-6 md:p-8 rounded-3xl flex flex-col items-center gap-5 group bg-white">
                     <img src="https://flagcdn.com/w80/us.png" class="w-12 md:w-14 h-auto rounded-lg shadow-md" alt="USA">
-                    <span class="font-bold text-base md:text-lg text-black group-hover:text-gray-600 transition">United States</span>
-                    <span class="text-[10px] bg-black text-white px-4 py-1.5 rounded-full font-bold uppercase group-hover:bg-gray-800 transition">See Offer</span>
+                    <span class="font-bold text-base md:text-lg text-black group-hover:text-gray-600 transition" data-i18n="c_usa">United States</span>
+                    <span class="text-[10px] bg-black text-white px-4 py-1.5 rounded-full font-bold uppercase group-hover:bg-gray-800 transition" data-i18n="btn_check">Check Availability</span>
                 </a>
                 <a href="https://www.fasttrack36.com/PHPWHDRK/2R37J52Q/?uid=47765" class="card-light p-6 md:p-8 rounded-3xl flex flex-col items-center gap-5 group bg-white">
                     <img src="https://flagcdn.com/w80/gb.png" class="w-12 md:w-14 h-auto rounded-lg shadow-md" alt="UK">
-                    <span class="font-bold text-base md:text-lg text-black group-hover:text-gray-600 transition">United Kingdom</span>
-                    <span class="text-[10px] bg-black text-white px-4 py-1.5 rounded-full font-bold uppercase group-hover:bg-gray-800 transition">See Offer</span>
+                    <span class="font-bold text-base md:text-lg text-black group-hover:text-gray-600 transition" data-i18n="c_uk">United Kingdom</span>
+                    <span class="text-[10px] bg-black text-white px-4 py-1.5 rounded-full font-bold uppercase group-hover:bg-gray-800 transition" data-i18n="btn_check">Check Availability</span>
                 </a>
                 <a href="https://www.fasttrack36.com/PHPWHDRK/2R37J52Q/?uid=47777" class="card-light p-6 md:p-8 rounded-3xl flex flex-col items-center gap-5 group bg-white">
                     <div class="flex gap-1.5">
@@ -278,107 +314,127 @@
                         <img src="https://flagcdn.com/w40/ch.png" class="w-7 md:w-8 h-auto rounded shadow-sm" alt="CH">
                     </div>
                     <span class="font-bold text-base md:text-lg text-black group-hover:text-gray-600 transition">DE / AT / CH</span>
-                    <span class="text-[10px] bg-black text-white px-4 py-1.5 rounded-full font-bold uppercase group-hover:bg-gray-800 transition">See Offer</span>
+                    <span class="text-[10px] bg-black text-white px-4 py-1.5 rounded-full font-bold uppercase group-hover:bg-gray-800 transition" data-i18n="btn_check">Check Availability</span>
                 </a>
                 <a href="https://www.fasttrack36.com/PHPWHDRK/2R37J52Q/?uid=47783" class="card-light p-6 md:p-8 rounded-3xl flex flex-col items-center gap-5 group bg-white">
                     <img src="https://flagcdn.com/w80/nl.png" class="w-12 md:w-14 h-auto rounded-lg shadow-md" alt="NL">
-                    <span class="font-bold text-base md:text-lg text-black group-hover:text-gray-600 transition">Netherlands</span>
-                    <span class="text-[10px] bg-black text-white px-4 py-1.5 rounded-full font-bold uppercase group-hover:bg-gray-800 transition">See Offer</span>
+                    <span class="font-bold text-base md:text-lg text-black group-hover:text-gray-600 transition" data-i18n="c_nl">Netherlands</span>
+                    <span class="text-[10px] bg-black text-white px-4 py-1.5 rounded-full font-bold uppercase group-hover:bg-gray-800 transition" data-i18n="btn_check">Check Availability</span>
                 </a>
                 <a href="https://www.fasttrack36.com/PHPWHDRK/2R37J52Q/?uid=47780" class="card-light p-6 md:p-8 rounded-3xl flex flex-col items-center gap-5 group bg-white">
                     <div class="flex gap-1.5">
                         <img src="https://flagcdn.com/w40/fr.png" class="w-7 md:w-8 h-auto rounded shadow-sm" alt="FR">
                         <img src="https://flagcdn.com/w40/be.png" class="w-7 md:w-8 h-auto rounded shadow-sm" alt="BE">
                     </div>
-                    <span class="font-bold text-base md:text-lg text-black group-hover:text-gray-600 transition">France / Belgium</span>
-                    <span class="text-[10px] bg-black text-white px-4 py-1.5 rounded-full font-bold uppercase group-hover:bg-gray-800 transition">See Offer</span>
+                    <span class="font-bold text-base md:text-lg text-black group-hover:text-gray-600 transition" data-i18n="c_fr_be">France / Belgium</span>
+                    <span class="text-[10px] bg-black text-white px-4 py-1.5 rounded-full font-bold uppercase group-hover:bg-gray-800 transition" data-i18n="btn_check">Check Availability</span>
                 </a>
                 <a href="https://www.fasttrack36.com/PHPWHDRK/2R37J52Q/?uid=47768" class="card-light p-6 md:p-8 rounded-3xl flex flex-col items-center gap-5 group bg-white">
                     <img src="https://flagcdn.com/w80/ca.png" class="w-12 md:w-14 h-auto rounded-lg shadow-md" alt="CA">
-                    <span class="font-bold text-base md:text-lg text-black group-hover:text-gray-600 transition">Canada</span>
-                    <span class="text-[10px] bg-black text-white px-4 py-1.5 rounded-full font-bold uppercase group-hover:bg-gray-800 transition">See Offer</span>
+                    <span class="font-bold text-base md:text-lg text-black group-hover:text-gray-600 transition" data-i18n="c_ca">Canada</span>
+                    <span class="text-[10px] bg-black text-white px-4 py-1.5 rounded-full font-bold uppercase group-hover:bg-gray-800 transition" data-i18n="btn_check">Check Availability</span>
                 </a>
                 <a href="https://www.fasttrack36.com/PHPWHDRK/2R37J52Q/?uid=47774" class="card-light p-6 md:p-8 rounded-3xl flex flex-col items-center gap-5 group bg-white">
                     <i class="fas fa-euro-sign text-3xl text-gray-300"></i>
-                    <span class="font-bold text-base md:text-lg text-black group-hover:text-gray-600 transition">Europe</span>
-                    <span class="text-[10px] bg-black text-white px-4 py-1.5 rounded-full font-bold uppercase group-hover:bg-gray-800 transition">See Offer</span>
+                    <span class="font-bold text-base md:text-lg text-black group-hover:text-gray-600 transition" data-i18n="c_eu">Europe</span>
+                    <span class="text-[10px] bg-black text-white px-4 py-1.5 rounded-full font-bold uppercase group-hover:bg-gray-800 transition" data-i18n="btn_check">Check Availability</span>
                 </a>
                 <a href="https://www.fasttrack36.com/PHPWHDRK/2R37J52Q/" class="card-light p-6 md:p-8 rounded-3xl flex flex-col items-center gap-5 group bg-white">
                     <i class="fas fa-globe text-3xl text-gray-300"></i>
-                    <span class="font-bold text-base md:text-lg text-black group-hover:text-gray-600 transition">Other Countries</span>
-                    <span class="text-[10px] bg-gray-100 text-gray-500 border border-gray-200 px-4 py-1.5 rounded-full font-bold uppercase group-hover:bg-gray-200 transition">See Offer</span>
+                    <span class="font-bold text-base md:text-lg text-black group-hover:text-gray-600 transition" data-i18n="c_other">Other Countries</span>
+                    <span class="text-[10px] bg-gray-100 text-gray-500 border border-gray-200 px-4 py-1.5 rounded-full font-bold uppercase group-hover:bg-gray-200 transition" data-i18n="btn_check">Check Availability</span>
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- FAQ (PADRONIZADA) -->
+    <!-- EEAT SECTION (AUTHORITY & CONTEXT) -->
+    <section class="bg-white py-16 border-b border-gray-100">
+        <div class="container mx-auto px-6 md:px-12 max-w-4xl text-center">
+            <span class="text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-4 block" data-i18n="eeat_title">About This Recommendation</span>
+            <h3 class="text-2xl font-bold mb-6" data-i18n="eeat_head">Why we feature Ozoori</h3>
+            <p class="text-gray-600 leading-relaxed mb-0" data-i18n="eeat_text">
+                Our team analyzes household gadgets that aim to reduce waste and improve home efficiency. Ozoori stands out due to its reusable nature, eliminating the need for disposable filters and plastic waste associated with traditional deodorizers. We have partnered with the official distributor to provide direct access to authentic stock.
+            </p>
+        </div>
+    </section>
+
+    <!-- FAQ -->
     <section class="bg-white py-24">
         <div class="container mx-auto px-6 md:px-12 max-w-3xl">
-            <h2 class="text-3xl md:text-4xl font-extrabold text-center mb-12 tracking-tight text-black">Questions & Answers</h2>
+            <h2 class="text-3xl md:text-4xl font-extrabold text-center mb-12 tracking-tight text-black" data-i18n="faq_title">Questions & Answers</h2>
             <div class="space-y-4">
                 <details class="group card-light rounded-2xl shadow-sm transition-all bg-white">
                     <summary class="p-6 font-bold cursor-pointer flex justify-between items-center text-lg list-none select-none">
-                        <span>How does Ozoori work?</span>
+                        <span data-i18n="faq_1_q">How does Ozoori work?</span>
                         <span class="text-black transition-transform group-open:rotate-45 duration-300"><i class="fas fa-plus text-sm"></i></span>
                     </summary>
-                    <div class="p-6 pt-0 text-gray-600 leading-relaxed border-t border-gray-50 animate-fade-in">
-                        Ozoori uses advanced ionic technology to neutralize odors and bacteria at the molecular level, keeping your fridge fresh and your food lasting longer.
+                    <div class="p-6 pt-0 text-gray-600 leading-relaxed border-t border-gray-50 animate-fade-in" data-i18n="faq_1_a">
+                        Ozoori uses advanced ionic technology to target odors and environmental factors in the fridge, aiming to keep your groceries fresh longer.
                     </div>
                 </details>
                 <details class="group card-light rounded-2xl shadow-sm transition-all bg-white">
                     <summary class="p-6 font-bold cursor-pointer flex justify-between items-center text-lg list-none select-none">
-                        <span>Do I need to replace filters?</span>
+                        <span data-i18n="faq_2_q">Do I need to replace filters?</span>
                         <span class="text-black transition-transform group-open:rotate-45 duration-300"><i class="fas fa-plus text-sm"></i></span>
                     </summary>
-                    <div class="p-6 pt-0 text-gray-600 leading-relaxed border-t border-gray-50 animate-fade-in">
+                    <div class="p-6 pt-0 text-gray-600 leading-relaxed border-t border-gray-50 animate-fade-in" data-i18n="faq_2_a">
                         No! Ozoori is designed to be filter-free. Simply recharge the device when needed and it's ready to go again.
                     </div>
                 </details>
                 <details class="group card-light rounded-2xl shadow-sm transition-all bg-white">
                     <summary class="p-6 font-bold cursor-pointer flex justify-between items-center text-lg list-none select-none">
-                        <span>How long does the battery last?</span>
+                        <span data-i18n="faq_3_q">How long does the battery last?</span>
                         <span class="text-black transition-transform group-open:rotate-45 duration-300"><i class="fas fa-plus text-sm"></i></span>
                     </summary>
-                    <div class="p-6 pt-0 text-gray-600 leading-relaxed border-t border-gray-50 animate-fade-in">
-                        A single charge typically lasts up to 30 days depending on usage conditions. It recharges quickly via the included USB cable.
+                    <div class="p-6 pt-0 text-gray-600 leading-relaxed border-t border-gray-50 animate-fade-in" data-i18n="faq_3_a">
+                        A single charge typically lasts up to 30 days depending on usage conditions and temperature.
                     </div>
                 </details>
                 <details class="group card-light rounded-2xl shadow-sm transition-all bg-white">
                     <summary class="p-6 font-bold cursor-pointer flex justify-between items-center text-lg list-none select-none">
-                        <span>Is it safe to use near food?</span>
+                        <span data-i18n="faq_4_q">Is it safe to use near food?</span>
                         <span class="text-black transition-transform group-open:rotate-45 duration-300"><i class="fas fa-plus text-sm"></i></span>
                     </summary>
-                    <div class="p-6 pt-0 text-gray-600 leading-relaxed border-t border-gray-50 animate-fade-in">
-                        Yes, Ozoori is completely safe. It uses chemical-free technology and leaves no residue, making it perfect for placing directly next to produce and open containers.
+                    <div class="p-6 pt-0 text-gray-600 leading-relaxed border-t border-gray-50 animate-fade-in" data-i18n="faq_4_a">
+                        Yes, the device is designed for fridge environments. It operates chemically-free and leaves no residue.
                     </div>
                 </details>
             </div>
         </div>
     </section>
 
-    <!-- FOOTER (PADRONIZADO) -->
+    <!-- FOOTER -->
     <footer class="bg-gray-50 pt-24 pb-12 border-t border-gray-200">
         <div class="container mx-auto px-6 md:px-12 text-center max-w-7xl">
+            
+            <div class="mb-10">
+                <span class="text-[10px] font-bold uppercase tracking-widest text-gray-400 block mb-4" data-i18n="aff_title">Affiliate Disclosure</span>
+                <p class="text-xs text-gray-500 max-w-2xl mx-auto leading-relaxed" data-i18n="aff_text">
+                    This website is an independent marketplace and information portal. We are not the manufacturer of the products listed. We may receive a commission for purchases made through links on this site. This does not affect the price you pay.
+                </p>
+            </div>
+
             <div class="mb-16">
                 <div class="inline-flex items-center gap-3 bg-white px-8 py-4 rounded-full border border-gray-200 shadow-sm">
                     <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
-                    <span class="text-[10px] md:text-xs text-gray-500 font-bold uppercase tracking-[0.2em]">Authorized Official Partner</span>
+                    <span class="text-[10px] md:text-xs text-gray-500 font-bold uppercase tracking-[0.2em]" data-i18n="auth_partner">Authorized Offers Portal</span>
                 </div>
             </div>
 
             <div class="mb-16 space-y-4 text-xs md:text-sm text-gray-500 max-w-2xl mx-auto">
-                <h4 class="font-bold uppercase tracking-widest mb-6 text-black">Corporate Information</h4>
+                <h4 class="font-bold uppercase tracking-widest mb-6 text-black" data-i18n="corp_info">Corporate Information</h4>
                 <p>Managed by: Haur B.V. (RSIN: 867612939)</p>
-                <p>Amsterdam, Netherlands | Manufacturer: STR.VERT CONSULTANTS LTD</p>
+                <p>Physical Address: John M. Keynesplein 1, 1066EP Amsterdam, Netherlands</p>
+                <p>Manufacturer: STR.VERT CONSULTANTS LTD</p>
                 <div class="pt-6 flex flex-col md:flex-row justify-center items-center gap-8 font-bold">
                     <a href="mailto:support@get-ozoori.com" class="hover:text-black transition text-gray-600"><i class="fas fa-envelope mr-2 text-black"></i> support@get-ozoori.com</a>
                     <a href="tel:+12395102199" class="hover:text-black transition text-gray-600"><i class="fas fa-phone mr-2 text-black"></i> +1 (239) 510-2199</a>
                 </div>
             </div>
 
-            <div class="text-[10px] text-gray-400 italic mb-12 border-t border-gray-200 pt-12 max-w-4xl mx-auto">
-                <strong>Important:</strong> Ozoori is a household product. Results may vary depending on usage conditions. Not intended to treat any medical condition.
+            <div class="text-[10px] text-gray-400 italic mb-12 border-t border-gray-200 pt-12 max-w-4xl mx-auto" data-i18n="footer_disclaimer">
+                <strong>Disclaimer:</strong> Ozoori is a household appliance. Statements have not been evaluated by the FDA or EMA. This product is not intended to diagnose, treat, cure, or prevent any disease. Results may vary.
             </div>
 
             <!-- LEGAL LINKS -->
@@ -391,11 +447,24 @@
             </div>
 
             <div class="text-[9px] text-gray-400 tracking-[0.2em] uppercase">
-                <p>© 2026 Ozoori Official. Google Ads Compliance Shield.</p>
-                <p class="mt-2">Google is a trademark of Google, Inc. This site is independent.</p>
+                <p>© 2026 Ozoori Authorized Portal. All Rights Reserved.</p>
+                <p class="mt-2" data-i18n="google_trademark">Google is a trademark of Google, Inc. This site is independent.</p>
             </div>
         </div>
     </footer>
+
+    <!-- COOKIE BANNER -->
+    <div id="cookie-consent">
+        <div class="container mx-auto max-w-6xl flex flex-col md:flex-row items-center justify-between gap-4">
+            <p class="text-xs text-gray-600 leading-relaxed text-center md:text-left">
+                We use cookies to improve your experience and analyze traffic. By clicking "Accept", you consent to our use of cookies in accordance with our <button onclick="openModal('privacy')" class="underline text-black font-bold">Privacy Policy</button>.
+            </p>
+            <div class="flex gap-3">
+                <button onclick="document.getElementById('cookie-consent').style.display='none'" class="px-6 py-2 bg-gray-200 text-gray-700 text-xs font-bold rounded-lg hover:bg-gray-300 transition">Decline</button>
+                <button onclick="document.getElementById('cookie-consent').style.display='none'" class="px-6 py-2 bg-black text-white text-xs font-bold rounded-lg hover:bg-gray-800 transition">Accept</button>
+            </div>
+        </div>
+    </div>
 
     <!-- MODAL -->
     <div id="policyModal" class="modal" onclick="if(event.target == this) closeModal()">
@@ -406,6 +475,7 @@
     </div>
 
     <script>
+        // Automatic Carousel
         let currentSlide = 0;
         const slides = document.querySelectorAll('.carousel-slide');
         
@@ -415,6 +485,514 @@
             slides[currentSlide].classList.add('active');
         }
         setInterval(nextSlide, 3000);
+
+        // Show cookie banner after delay
+        setTimeout(() => {
+            document.getElementById('cookie-consent').style.display = 'block';
+        }, 1000);
+
+        // Translations Data
+        const resources = {
+            en: {
+                disclosure: "Advertorial Review | Independent Authorized Portal",
+                top_bar: "LIMITED AVAILABILITY | CHECK OFFICIAL DISCOUNTS",
+                reviews: "4.7 | 1000+ Verified User Reviews",
+                headline: "Address Fridge Odors & Support Freshness.",
+                subheadline: "Unpleasant smells often indicate breakdown. See how Ozoori works to support a fresher environment for your groceries.*",
+                feat1: "Designed to neutralize odors at the source.",
+                feat2: "Assists in reducing mold/bacteria in humid conditions.",
+                feat3: "Supports longevity of fresh produce.",
+                feat4: "Filter-free technology: One-time purchase.",
+                stock: "High Demand - Check Availability",
+                cta_check: "Check Official Availability",
+                cta_read: "Read More",
+                disclaimer_small: "*Results may vary based on usage.",
+                region_title: "Verify Official Availability",
+                region_sub: "Select your region to check stock and valid discounts.",
+                c_usa: "United States",
+                c_uk: "United Kingdom",
+                c_nl: "Netherlands",
+                c_fr_be: "France / Belgium",
+                c_ca: "Canada",
+                c_eu: "Europe",
+                c_other: "Other Countries",
+                btn_check: "Check Availability",
+                eeat_title: "About This Recommendation",
+                eeat_head: "Why we feature Ozoori",
+                eeat_text: "Our team analyzes household gadgets that aim to reduce waste and improve home efficiency. Ozoori stands out due to its reusable nature, eliminating the need for disposable filters and plastic waste associated with traditional deodorizers.",
+                faq_title: "Questions & Answers",
+                faq_1_q: "How does Ozoori work?",
+                faq_1_a: "Ozoori uses advanced ionic technology to target odors and environmental factors in the fridge, aiming to keep your groceries fresh longer.",
+                faq_2_q: "Do I need to replace filters?",
+                faq_2_a: "No! Ozoori is designed to be filter-free. Simply recharge the device when needed and it's ready to go again.",
+                faq_3_q: "How long does the battery last?",
+                faq_3_a: "A single charge typically lasts up to 30 days depending on usage conditions and temperature.",
+                faq_4_q: "Is it safe to use near food?",
+                faq_4_a: "Yes, the device is designed for fridge environments. It operates chemically-free and leaves no residue.",
+                aff_title: "Affiliate Disclosure",
+                aff_text: "This website is an independent marketplace and information portal. We are not the manufacturer of the products listed. We may receive a commission for purchases made through links on this site.",
+                auth_partner: "Authorized Offers Portal",
+                corp_info: "Corporate Information",
+                footer_disclaimer: "Disclaimer: Ozoori is a household appliance. Statements have not been evaluated by the FDA or EMA. This product is not intended to diagnose, treat, cure, or prevent any disease.",
+                google_trademark: "Google is a trademark of Google, Inc. This site is independent."
+            },
+            pt: {
+                disclosure: "Resenha Informativa | Portal Autorizado Independente",
+                top_bar: "DISPONIBILIDADE LIMITADA | VERIFICAR DESCONTOS",
+                reviews: "4.7 | 1000+ Avaliações Verificadas",
+                headline: "Combata Odores e Apoie o Frescor.",
+                subheadline: "Odores desagradáveis indicam problemas. Veja como o Ozoori ajuda a manter um ambiente mais fresco para seus alimentos.*",
+                feat1: "Projetado para neutralizar odores na fonte.",
+                feat2: "Auxilia na redução de mofo/bactérias em ambientes úmidos.",
+                feat3: "Apoia a longevidade de produtos frescos.",
+                feat4: "Tecnologia sem filtro: Compra única.",
+                stock: "Alta Demanda - Verifique a Disponibilidade",
+                cta_check: "Verificar Disponibilidade Oficial",
+                cta_read: "Ler Mais",
+                disclaimer_small: "*Resultados podem variar.",
+                region_title: "Verificar Disponibilidade",
+                region_sub: "Selecione sua região para verificar estoque e descontos.",
+                c_usa: "Estados Unidos",
+                c_uk: "Reino Unido",
+                c_nl: "Holanda",
+                c_fr_be: "França / Bélgica",
+                c_ca: "Canadá",
+                c_eu: "Europa",
+                c_other: "Outros Países",
+                btn_check: "Verificar Oferta",
+                eeat_title: "Sobre Esta Recomendação",
+                eeat_head: "Por que destacamos o Ozoori",
+                eeat_text: "Analisamos gadgets que visam reduzir desperdícios e melhorar a eficiência doméstica. O Ozoori se destaca por ser reutilizável, eliminando a necessidade de filtros descartáveis.",
+                faq_title: "Perguntas Frequentes",
+                faq_1_q: "Como o Ozoori funciona?",
+                faq_1_a: "O Ozoori utiliza tecnologia iônica avançada para combater odores e fatores ambientais na geladeira.",
+                faq_2_q: "Preciso trocar filtros?",
+                faq_2_a: "Não! O Ozoori é projetado para ser livre de filtros. Basta recarregar o dispositivo.",
+                faq_3_q: "Quanto dura a bateria?",
+                faq_3_a: "Uma carga dura tipicamente até 30 dias, dependendo das condições de uso.",
+                faq_4_q: "É seguro perto de comida?",
+                faq_4_a: "Sim, o dispositivo é seguro, opera sem produtos químicos e não deixa resíduos.",
+                aff_title: "Divulgação de Afiliado",
+                aff_text: "Este site é um portal independente. Não somos o fabricante. Podemos receber comissão por compras feitas através dos links.",
+                auth_partner: "Portal de Ofertas Autorizado",
+                corp_info: "Informações Corporativas",
+                footer_disclaimer: "Aviso: Ozoori é um eletrodoméstico. Este produto não se destina a diagnosticar, tratar, curar ou prevenir qualquer doença.",
+                google_trademark: "Google é uma marca comercial da Google, Inc. Este site é independente."
+            },
+            es: {
+                disclosure: "Reseña Informativa | Portal Autorizado Independiente",
+                top_bar: "DISPONIBILIDAD LIMITADA | VERIFICAR DESCUENTOS",
+                reviews: "4.7 | 1000+ Reseñas Verificadas",
+                headline: "Combata Olores y Apoye la Frescura.",
+                subheadline: "Los malos olores indican problemas. Vea cómo Ozoori ayuda a mantener un ambiente más fresco.*",
+                feat1: "Diseñado para neutralizar olores en la fuente.",
+                feat2: "Ayuda a reducir moho/bacterias en humedad.",
+                feat3: "Apoya la longevidad de productos frescos.",
+                feat4: "Tecnología sin filtro: Compra única.",
+                stock: "Alta Demanda - Verificar Disponibilidad",
+                cta_check: "Verificar Disponibilidad Oficial",
+                cta_read: "Leer Más",
+                disclaimer_small: "*Los resultados pueden variar.",
+                region_title: "Verificar Disponibilidad",
+                region_sub: "Seleccione su región para ver stock y descuentos.",
+                c_usa: "Estados Unidos",
+                c_uk: "Reino Unido",
+                c_nl: "Países Bajos",
+                c_fr_be: "Francia / Bélgica",
+                c_ca: "Canadá",
+                c_eu: "Europa",
+                c_other: "Otros Países",
+                btn_check: "Ver Oferta",
+                eeat_title: "Sobre Esta Recomendación",
+                eeat_head: "Por qué destacamos Ozoori",
+                eeat_text: "Analizamos gadgets para reducir residuos. Ozoori destaca por ser reutilizable, eliminando filtros desechables.",
+                faq_title: "Preguntas Frecuentes",
+                faq_1_q: "¿Cómo funciona Ozoori?",
+                faq_1_a: "Ozoori usa tecnología iónica avanzada para combatir olores y factores ambientales en el refrigerador.",
+                faq_2_q: "¿Necesito cambiar filtros?",
+                faq_2_a: "¡No! Ozoori está diseñado sin filtros. Simplemente recargue el dispositivo.",
+                faq_3_q: "¿Cuánto dura la batería?",
+                faq_3_a: "Una carga dura típicamente hasta 30 días, dependiendo del uso.",
+                faq_4_q: "¿Es seguro cerca de la comida?",
+                faq_4_a: "Sí, es seguro, opera sin químicos y no deja residuos.",
+                aff_title: "Divulgación de Afiliado",
+                aff_text: "Este sitio es un portal independiente. No somos el fabricante. Podemos recibir comisión por compras.",
+                auth_partner: "Portal de Ofertas Autorizado",
+                corp_info: "Información Corporativa",
+                footer_disclaimer: "Aviso: Ozoori es un electrodoméstico. No está destinado a diagnosticar ni curar enfermedades.",
+                google_trademark: "Google es una marca registrada de Google, Inc. Este sitio es independiente."
+            },
+            de: {
+                disclosure: "Informativer Bericht | Unabhängiges Portal",
+                top_bar: "BEGRENZTE VERFÜGBARKEIT | RABATTE PRÜFEN",
+                reviews: "4.7 | 1000+ Verifizierte Bewertungen",
+                headline: "Bekämpfen Sie Gerüche & Fördern Sie Frische.",
+                subheadline: "Schlechte Gerüche deuten auf Probleme hin. Sehen Sie, wie Ozoori für eine frischere Umgebung sorgt.*",
+                feat1: "Entwickelt, um Gerüche an der Quelle zu neutralisieren.",
+                feat2: "Hilft, Schimmel/Bakterien bei Feuchtigkeit zu reduzieren.",
+                feat3: "Unterstützt die Langlebigkeit frischer Produkte.",
+                feat4: "Filterlose Technologie: Einmaliger Kauf.",
+                stock: "Hohe Nachfrage - Verfügbarkeit prüfen",
+                cta_check: "Offizielle Verfügbarkeit prüfen",
+                cta_read: "Mehr lesen",
+                disclaimer_small: "*Ergebnisse können variieren.",
+                region_title: "Verfügbarkeit prüfen",
+                region_sub: "Wählen Sie Ihre Region für Lagerbestand und Rabatte.",
+                c_usa: "Vereinigte Staaten",
+                c_uk: "Vereinigtes Königreich",
+                c_nl: "Niederlande",
+                c_fr_be: "Frankreich / Belgien",
+                c_ca: "Kanada",
+                c_eu: "Europa",
+                c_other: "Andere Länder",
+                btn_check: "Angebot prüfen",
+                eeat_title: "Über diese Empfehlung",
+                eeat_head: "Warum wir Ozoori vorstellen",
+                eeat_text: "Wir analysieren Haushaltsgeräte zur Abfallreduzierung. Ozoori zeichnet sich durch seine Wiederverwendbarkeit aus und eliminiert Einwegfilter.",
+                faq_title: "Häufige Fragen",
+                faq_1_q: "Wie funktioniert Ozoori?",
+                faq_1_a: "Ozoori verwendet fortschrittliche Ionentechnologie gegen Gerüche und Umweltfaktoren im Kühlschrank.",
+                faq_2_q: "Muss ich Filter wechseln?",
+                faq_2_a: "Nein! Ozoori ist filterlos. Einfach aufladen.",
+                faq_3_q: "Wie lange hält der Akku?",
+                faq_3_a: "Eine Ladung hält typischerweise bis zu 30 Tage.",
+                faq_4_q: "Ist es sicher bei Lebensmitteln?",
+                faq_4_a: "Ja, es arbeitet chemiefrei und hinterlässt keine Rückstände.",
+                aff_title: "Affiliate-Offenlegung",
+                aff_text: "Diese Website ist ein unabhängiges Portal. Wir sind nicht der Hersteller. Wir können Provisionen erhalten.",
+                auth_partner: "Autorisiertes Angebotsportal",
+                corp_info: "Unternehmensinformationen",
+                footer_disclaimer: "Haftungsausschluss: Ozoori ist ein Haushaltsgerät. Nicht zur Diagnose oder Heilung von Krankheiten bestimmt.",
+                google_trademark: "Google ist eine Marke von Google, Inc. Diese Seite ist unabhängig."
+            },
+            fr: {
+                disclosure: "Revue Informative | Portal Autorisé Indépendant",
+                top_bar: "DISPONIBILITÉ LIMITÉE | VÉRIFIER REMISES",
+                reviews: "4.7 | 1000+ Avis Vérifiés",
+                headline: "Combattez les Odeurs et Soutenez la Fraîcheur.",
+                subheadline: "Les mauvaises odeurs indiquent des problèmes. Voyez comment Ozoori aide à maintenir un environnement plus frais.*",
+                feat1: "Conçu pour neutraliser les odeurs à la source.",
+                feat2: "Aide à réduire moisissures/bactéries.",
+                feat3: "Soutient la longévité des produits frais.",
+                feat4: "Technologie sans filtre : Achat unique.",
+                stock: "Forte Demande - Vérifier Disponibilité",
+                cta_check: "Vérifier Disponibilité Officielle",
+                cta_read: "Lire la suite",
+                disclaimer_small: "*Les résultats peuvent varier.",
+                region_title: "Vérifier Disponibilité",
+                region_sub: "Sélectionnez votre région pour voir le stock.",
+                c_usa: "États-Unis",
+                c_uk: "Royaume-Uni",
+                c_nl: "Pays-Bas",
+                c_fr_be: "France / Belgique",
+                c_ca: "Canada",
+                c_eu: "Europe",
+                c_other: "Autres Pays",
+                btn_check: "Voir l'offre",
+                eeat_title: "À propos de cette recommandation",
+                eeat_head: "Pourquoi nous présentons Ozoori",
+                eeat_text: "Nous analysons les gadgets pour réduire les déchets. Ozoori se distingue par sa nature réutilisable, éliminant les filtres jetables.",
+                faq_title: "Questions Fréquentes",
+                faq_1_q: "Comment fonctionne Ozoori ?",
+                faq_1_a: "Ozoori utilise une technologie ionique avancée pour cibler les odeurs dans le réfrigérateur.",
+                faq_2_q: "Dois-je remplacer les filtres ?",
+                faq_2_a: "Non ! Ozoori est conçu sans filtre. Il suffit de le recharger.",
+                faq_3_q: "Combien de temps dure la batterie ?",
+                faq_3_a: "Une charge dure généralement jusqu'à 30 jours.",
+                faq_4_q: "Est-ce sûr près des aliments ?",
+                faq_4_a: "Oui, il fonctionne sans produits chimiques et ne laisse aucun résidu.",
+                aff_title: "Divulgation d'Affiliation",
+                aff_text: "Ce site est un portail indépendant. Nous ne sommes pas le fabricant. Nous pouvons recevoir une commission.",
+                auth_partner: "Portail d'Offres Autorisé",
+                corp_info: "Informations Entreprise",
+                footer_disclaimer: "Avis : Ozoori est un appareil électroménager. Non destiné à diagnostiquer ou guérir des maladies.",
+                google_trademark: "Google est une marque de Google, Inc. Ce site est indépendant."
+            },
+            nl: {
+                disclosure: "Informatieve Review | Onafhankelijk Portaal",
+                top_bar: "BEPERKTE BESCHIKBAARHEID | CHECK KORTINGEN",
+                reviews: "4.7 | 1000+ Geverifieerde Reviews",
+                headline: "Pak Koelkastgeuren Aan & Behoud Versheid.",
+                subheadline: "Slechte geuren duiden op problemen. Zie hoe Ozoori helpt een frissere omgeving te behouden.*",
+                feat1: "Ontworpen om geuren bij de bron te neutraliseren.",
+                feat2: "Helpt schimmel/bacteriën te verminderen in vocht.",
+                feat3: "Ondersteunt de levensduur van verse producten.",
+                feat4: "Filterloze technologie: Eenmalige aankoop.",
+                stock: "Grote Vraag - Check Beschikbaarheid",
+                cta_check: "Check Officiële Beschikbaarheid",
+                cta_read: "Lees Meer",
+                disclaimer_small: "*Resultaten kunnen variëren.",
+                region_title: "Controleer Beschikbaarheid",
+                region_sub: "Selecteer uw regio voor voorraad en kortingen.",
+                c_usa: "Verenigde Staten",
+                c_uk: "Verenigd Koninkrijk",
+                c_nl: "Nederland",
+                c_fr_be: "Frankrijk / België",
+                c_ca: "Canada",
+                c_eu: "Europa",
+                c_other: "Andere Landen",
+                btn_check: "Bekijk Aanbieding",
+                eeat_title: "Over deze aanbeveling",
+                eeat_head: "Waarom we Ozoori uitlichten",
+                eeat_text: "We analyseren gadgets die afval verminderen. Ozoori onderscheidt zich door herbruikbaarheid en elimineert wegwerpfilters.",
+                faq_title: "Veelgestelde Vragen",
+                faq_1_q: "Hoe werkt Ozoori?",
+                faq_1_a: "Ozoori gebruikt ionische technologie om geuren en omgevingsfactoren in de koelkast aan te pakken.",
+                faq_2_q: "Moet ik filters vervangen?",
+                faq_2_a: "Nee! Ozoori is filterloos. Gewoon opladen.",
+                faq_3_q: "Hoe lang gaat de batterij mee?",
+                faq_3_a: "Een lading gaat doorgaans tot 30 dagen mee.",
+                faq_4_q: "Is het veilig bij voedsel?",
+                faq_4_a: "Ja, het werkt zonder chemicaliën en laat geen residu achter.",
+                aff_title: "Affiliate Openbaarmaking",
+                aff_text: "Deze website is een onafhankelijk portaal. Wij zijn niet de fabrikant. We kunnen commissie ontvangen.",
+                auth_partner: "Geautoriseerd Aanbiedingen Portaal",
+                corp_info: "Bedrijfsinformatie",
+                footer_disclaimer: "Disclaimer: Ozoori is een huishoudelijk apparaat. Niet bedoeld om ziekten te diagnosticeren of te genezen.",
+                google_trademark: "Google is een handelsmerk van Google, Inc. Deze site is onafhankelijk."
+            },
+            it: {
+                disclosure: "Recensione Informativa | Portale Autorizzato",
+                top_bar: "DISPONIBILITÀ LIMITATA | VERIFICA SCONTI",
+                reviews: "4.7 | 1000+ Recensioni Verificate",
+                headline: "Combatti gli Odori e Mantieni la Freschezza.",
+                subheadline: "I cattivi odori indicano problemi. Scopri come Ozoori aiuta a mantenere un ambiente più fresco.*",
+                feat1: "Progettato per neutralizzare gli odori alla fonte.",
+                feat2: "Aiuta a ridurre muffe/batteri nell'umidità.",
+                feat3: "Supporta la longevità dei prodotti freschi.",
+                feat4: "Tecnologia senza filtro: Acquisto unico.",
+                stock: "Alta Richiesta - Verifica Disponibilità",
+                cta_check: "Verifica Disponibilità Ufficiale",
+                cta_read: "Leggi di più",
+                disclaimer_small: "*I risultati possono variare.",
+                region_title: "Verifica Disponibilità",
+                region_sub: "Seleziona la tua regione per stock e sconti.",
+                c_usa: "Stati Uniti",
+                c_uk: "Regno Unito",
+                c_nl: "Paesi Bassi",
+                c_fr_be: "Francia / Belgio",
+                c_ca: "Canada",
+                c_eu: "Europa",
+                c_other: "Altri Paesi",
+                btn_check: "Vedi Offerta",
+                eeat_title: "Su questa raccomandazione",
+                eeat_head: "Perché presentiamo Ozoori",
+                eeat_text: "Analizziamo gadget per ridurre gli sprechi. Ozoori si distingue per essere riutilizzabile, eliminando i filtri usa e getta.",
+                faq_title: "Domande Frequenti",
+                faq_1_q: "Come funziona Ozoori?",
+                faq_1_a: "Ozoori utilizza tecnologia ionica avanzata per combattere odori e fattori ambientali nel frigorifero.",
+                faq_2_q: "Devo sostituire i filtri?",
+                faq_2_a: "No! Ozoori è senza filtri. Basta ricaricarlo.",
+                faq_3_q: "Quanto dura la batteria?",
+                faq_3_a: "Una carica dura tipicamente fino a 30 giorni.",
+                faq_4_q: "È sicuro vicino al cibo?",
+                faq_4_a: "Sì, funziona senza prodotti chimici e non lascia residui.",
+                aff_title: "Divulgazione Affiliati",
+                aff_text: "Questo sito è un portale indipendente. Non siamo il produttore. Possiamo ricevere commissioni.",
+                auth_partner: "Portale Offerte Autorizzato",
+                corp_info: "Informazioni Aziendali",
+                footer_disclaimer: "Avviso: Ozoori è un elettrodomestico. Non destinato a diagnosticare o curare malattie.",
+                google_trademark: "Google è un marchio di Google, Inc. Questo sito è indipendente."
+            },
+            sv: {
+                disclosure: "Informativ Recension | Oberoende Portal",
+                top_bar: "BEGRÄNSAD TILLGÅNG | KONTROLLERA RABATTER",
+                reviews: "4.7 | 1000+ Verifierade Recensioner",
+                headline: "Bekämpa Lukter & Stöd Färskhet.",
+                subheadline: "Dålig lukt tyder på problem. Se hur Ozoori hjälper till att hålla en fräschare miljö.*",
+                feat1: "Designad för att neutralisera lukter vid källan.",
+                feat2: "Hjälper till att minska mögel/bakterier.",
+                feat3: "Stödjer hållbarheten för färska produkter.",
+                feat4: "Filterlös teknik: Engångsköp.",
+                stock: "Hög Efterfrågan - Kontrollera Tillgänglighet",
+                cta_check: "Kontrollera Officiell Tillgänglighet",
+                cta_read: "Läs Mer",
+                disclaimer_small: "*Resultat kan variera.",
+                region_title: "Kontrollera Tillgänglighet",
+                region_sub: "Välj din region för lager och rabatter.",
+                c_usa: "USA",
+                c_uk: "Storbritannien",
+                c_nl: "Nederländerna",
+                c_fr_be: "Frankrike / Belgien",
+                c_ca: "Kanada",
+                c_eu: "Europa",
+                c_other: "Andra Länder",
+                btn_check: "Se Erbjudande",
+                eeat_title: "Om denna rekommendation",
+                eeat_head: "Varför vi lyfter fram Ozoori",
+                eeat_text: "Vi analyserar prylar som minskar avfall. Ozoori är återanvändbar och eliminerar engångsfilter.",
+                faq_title: "Vanliga Frågor",
+                faq_1_q: "Hur fungerar Ozoori?",
+                faq_1_a: "Ozoori använder jonisk teknik för att bekämpa lukter i kylen.",
+                faq_2_q: "Behöver jag byta filter?",
+                faq_2_a: "Nej! Ozoori är filterlös. Ladda bara upp den.",
+                faq_3_q: "Hur länge håller batteriet?",
+                faq_3_a: "En laddning håller vanligtvis upp till 30 dagar.",
+                faq_4_q: "Är det säkert nära mat?",
+                faq_4_a: "Ja, den är kemikaliefri och lämnar inga rester.",
+                aff_title: "Affiliate-avslöjande",
+                aff_text: "Denna webbplats är en oberoende portal. Vi är inte tillverkaren. Vi kan få provision.",
+                auth_partner: "Auktoriserad Erbjudandeportal",
+                corp_info: "Företagsinformation",
+                footer_disclaimer: "Varning: Ozoori är en hushållsapparat. Ej avsedd att diagnostisera eller bota sjukdomar.",
+                google_trademark: "Google är ett varumärke som tillhör Google, Inc. Denna webbplats är oberoende."
+            },
+            da: {
+                disclosure: "Informativ Anmeldelse | Uafhængig Portal",
+                top_bar: "BEGRÆNSET TILGÆNGELIGHED | TJEK RABATTER",
+                reviews: "4.7 | 1000+ Verificerede Anmeldelser",
+                headline: "Bekæmp Lugte & Støt Friskhed.",
+                subheadline: "Dårlig lugt indikerer problemer. Se hvordan Ozoori hjælper med at bevare et friskere miljø.*",
+                feat1: "Designet til at neutralisere lugte ved kilden.",
+                feat2: "Hjælper med at reducere skimmel/bakterier.",
+                feat3: "Støtter holdbarheden af friske varer.",
+                feat4: "Filterløs teknologi: Engangskøb.",
+                stock: "Stor Efterspørgsel - Tjek Tilgængelighed",
+                cta_check: "Tjek Officiel Tilgængelighed",
+                cta_read: "Læs Mere",
+                disclaimer_small: "*Resultater kan variere.",
+                region_title: "Tjek Tilgængelighed",
+                region_sub: "Vælg din region for lager og rabatter.",
+                c_usa: "USA",
+                c_uk: "Storbritannien",
+                c_nl: "Holland",
+                c_fr_be: "Frankrig / Belgien",
+                c_ca: "Canada",
+                c_eu: "Europa",
+                c_other: "Andre Lande",
+                btn_check: "Se Tilbud",
+                eeat_title: "Om denne anbefaling",
+                eeat_head: "Hvorfor vi fremhæver Ozoori",
+                eeat_text: "Vi analyserer gadgets der reducerer affald. Ozoori er genanvendelig og eliminerer engangsfiltre.",
+                faq_title: "Ofte Stillede Spørgsmål",
+                faq_1_q: "Hvordan virker Ozoori?",
+                faq_1_a: "Ozoori bruger ionisk teknologi til at bekæmpe lugte i køleskabet.",
+                faq_2_q: "Skal jeg udskifte filtre?",
+                faq_2_a: "Nej! Ozoori er filterløs. Bare genoplad den.",
+                faq_3_q: "Hvor længe holder batteriet?",
+                faq_3_a: "En opladning holder typisk op til 30 dage.",
+                faq_4_q: "Er det sikkert nær mad?",
+                faq_4_a: "Ja, den er kemikaliefri og efterlader ingen rester.",
+                aff_title: "Affiliate Erklæring",
+                aff_text: "Dette websted er en uafhængig portal. Vi er ikke producenten. Vi kan modtage provision.",
+                auth_partner: "Autoriseret Tilbudsportale",
+                corp_info: "Virksomhedsinformation",
+                footer_disclaimer: "Advarsel: Ozoori er et husholdningsapparat. Ikke beregnet til at diagnosticere eller helbrede sygdomme.",
+                google_trademark: "Google er et varemærke tilhørende Google, Inc. Dette websted er uafhængigt."
+            },
+            fi: {
+                disclosure: "Informatiivinen Arvostelu | Riippumaton Portaali",
+                top_bar: "RAJOITETTU SAATAVUUS | TARKISTA ALENNUKSET",
+                reviews: "4.7 | 1000+ Vahvistettua Arvostelua",
+                headline: "Torju Hajut & Tue Tuoreutta.",
+                subheadline: "Paha haju kertoo ongelmista. Katso, miten Ozoori auttaa ylläpitämään raikkaampaa ympäristöä.*",
+                feat1: "Suunniteltu neutraloimaan hajut lähteellä.",
+                feat2: "Auttaa vähentämään hometta/bakteereja.",
+                feat3: "Tukee tuoreiden tuotteiden säilyvyyttä.",
+                feat4: "Suodattimaton teknologia: Kertaostos.",
+                stock: "Suuri Kysyntä - Tarkista Saatavuus",
+                cta_check: "Tarkista Virallinen Saatavuus",
+                cta_read: "Lue Lisää",
+                disclaimer_small: "*Tulokset voivat vaihdella.",
+                region_title: "Tarkista Saatavuus",
+                region_sub: "Valitse alueesi nähdäksesi varaston ja alennukset.",
+                c_usa: "Yhdysvallat",
+                c_uk: "Iso-Britannia",
+                c_nl: "Alankomaat",
+                c_fr_be: "Ranska / Belgia",
+                c_ca: "Kanada",
+                c_eu: "Eurooppa",
+                c_other: "Muut Maat",
+                btn_check: "Katso Tarjous",
+                eeat_title: "Tietoja tästä suosituksesta",
+                eeat_head: "Miksi esittelemme Ozoorin",
+                eeat_text: "Analysoimme laitteita, jotka vähentävät jätettä. Ozoori on uudelleenkäytettävä ja poistaa kertakäyttösuodattimet.",
+                faq_title: "Usein Kysytyt Kysymykset",
+                faq_1_q: "Miten Ozoori toimii?",
+                faq_1_a: "Ozoori käyttää ioniteknologiaa hajujen torjumiseen jääkaapissa.",
+                faq_2_q: "Pitääkö suodattimia vaihtaa?",
+                faq_2_a: "Ei! Ozoori on suodattimaton. Lataa vain laite.",
+                faq_3_q: "Kuinka kauan akku kestää?",
+                faq_3_a: "Lataus kestää tyypillisesti jopa 30 päivää.",
+                faq_4_q: "Onko se turvallinen ruoan lähellä?",
+                faq_4_a: "Kyllä, se on kemikaaliton eikä jätä jäämiä.",
+                aff_title: "Affiliate-ilmoitus",
+                aff_text: "Tämä sivusto on riippumaton portaali. Emme ole valmistaja. Saatamme saada palkkion.",
+                auth_partner: "Valtuutettu Tarjousportaali",
+                corp_info: "Yritystiedot",
+                footer_disclaimer: "Varoitus: Ozoori on kodinkone. Ei tarkoitettu sairauksien diagnosointiin tai hoitoon.",
+                google_trademark: "Google on Google, Inc:n tavaramerkki. Tämä sivusto on riippumaton."
+            },
+            no: {
+                disclosure: "Informativ Anmeldelse | Uavhengig Portal",
+                top_bar: "BEGRENSET TILGJENGELIGHET | SJEKK RABATTER",
+                reviews: "4.7 | 1000+ Verifiserte Anmeldelser",
+                headline: "Bekjemp Lukt & Støtt Friskhet.",
+                subheadline: "Dårlig lukt indikerer problemer. Se hvordan Ozoori hjelper med å opprettholde et friskere miljø.*",
+                feat1: "Designet for å nøytralisere lukt ved kilden.",
+                feat2: "Hjelper med å redusere mugg/bakterier.",
+                feat3: "Støtter holdbarheten til ferske varer.",
+                feat4: "Filterløs teknologi: Engangskjøp.",
+                stock: "Stor Etterspørsel - Sjekk Tilgjengelighet",
+                cta_check: "Sjekk Offisiell Tilgjengelighet",
+                cta_read: "Les Mer",
+                disclaimer_small: "*Resultater kan variere.",
+                region_title: "Sjekk Tilgjengelighet",
+                region_sub: "Velg din region for lager og rabatter.",
+                c_usa: "USA",
+                c_uk: "Storbritannia",
+                c_nl: "Nederland",
+                c_fr_be: "Frankrike / Belgia",
+                c_ca: "Canada",
+                c_eu: "Europa",
+                c_other: "Andre Land",
+                btn_check: "Se Tilbud",
+                eeat_title: "Om denne anbefalingen",
+                eeat_head: "Hvorfor vi fremhever Ozoori",
+                eeat_text: "Vi analyserer gadgets som reduserer avfall. Ozoori er gjenbrukbar og eliminerer engangsfiltre.",
+                faq_title: "Ofte Stilte Spørsmål",
+                faq_1_q: "Hvordan virker Ozoori?",
+                faq_1_a: "Ozoori bruker ionisk teknologi for å bekjempe lukt i kjøleskapet.",
+                faq_2_q: "Må jeg bytte filtre?",
+                faq_2_a: "Nei! Ozoori er filterløs. Bare lad den opp.",
+                faq_3_q: "Hvor lenge varer batteriet?",
+                faq_3_a: "En lading varer typisk opptil 30 dager.",
+                faq_4_q: "Er det trygt nær mat?",
+                faq_4_a: "Ja, den er kjemikaliefri og etterlater ingen rester.",
+                aff_title: "Affiliate Erklæring",
+                aff_text: "Dette nettstedet er en uavhengig portal. Vi er ikke produsenten. Vi kan motta provisjon.",
+                auth_partner: "Autorisert Tilbudsportale",
+                corp_info: "Bedriftsinformasjon",
+                footer_disclaimer: "Advarsel: Ozoori er et husholdningsapparat. Ikke ment for å diagnostisere eller kurere sykdommer.",
+                google_trademark: "Google er et varemerke for Google, Inc. Dette nettstedet er uavhengig."
+            }
+        };
+
+        // Functions for i18n
+        function setLanguage(lang) {
+            if (!resources[lang]) return;
+            const texts = resources[lang];
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (texts[key]) el.innerText = texts[key];
+            });
+            document.documentElement.lang = lang;
+            document.getElementById('lang-selector').value = lang;
+        }
+
+        document.getElementById('lang-selector').addEventListener('change', (e) => {
+            setLanguage(e.target.value);
+        });
+
+        // Initialize Language
+        document.addEventListener('DOMContentLoaded', () => {
+            const browserLang = navigator.language.split('-')[0];
+            if (resources[browserLang]) {
+                setLanguage(browserLang);
+            } else {
+                setLanguage('en');
+            }
+        });
 
         const modalContent = {
             howtouse: `
