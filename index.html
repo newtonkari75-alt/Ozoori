@@ -49,19 +49,18 @@
             box-shadow: 0 12px 24px -10px rgba(0, 0, 0, 0.1);
         }
 
-        /* Carrossel Customizado */
-        .carousel-container {
+        /* Carrossel Customizado - Usando Aspect Ratio moderno */
+        .carousel-wrapper {
             position: relative;
             width: 100%;
-            height: 0;
-            padding-bottom: 100%; /* Aspect ratio 1:1 quadrado para melhor alinhamento */
+            border-radius: 24px;
             overflow: hidden;
             background-color: #f9fafb;
-            border-radius: 24px;
+            /* Garante proporção consistente */
+            aspect-ratio: 1 / 1; 
         }
-        @media (min-width: 768px) {
-            /* No desktop, um pouco mais retangular ou adaptado */
-            .carousel-container { padding-bottom: 85%; }
+        @media (min-width: 1024px) {
+            .carousel-wrapper { aspect-ratio: 4 / 3; }
         }
 
         .carousel-slide {
@@ -75,7 +74,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 20px;
+            padding: 0; 
         }
         .carousel-slide.active {
             opacity: 1;
@@ -84,8 +83,7 @@
         .carousel-slide img, .carousel-slide video {
             width: 100%;
             height: 100%;
-            object-fit: contain;
-            border-radius: 12px;
+            object-fit: cover; /* Cobre todo o espaço */
         }
 
         /* Animações */
@@ -133,9 +131,9 @@
         OFERTA ESPECIAL POR TEMPO LIMITADO | 75% DE DESCONTO
     </div>
 
-    <!-- NAVBAR -->
+    <!-- NAVBAR - ALINHAMENTO PADRONIZADO -->
     <nav class="bg-white/80 border-b border-gray-100 py-4 backdrop-blur-xl sticky top-[38px] z-50">
-        <div class="container mx-auto px-5 max-w-7xl flex justify-between items-center">
+        <div class="container mx-auto px-6 md:px-12 max-w-7xl flex justify-between items-center">
             <div class="flex items-center">
                 <img src="images/logo_Ozoori_black.svg" alt="Ozoori Logo" class="h-8 md:h-10 w-auto">
             </div>
@@ -149,17 +147,18 @@
         </div>
     </nav>
 
-    <!-- HERO SECTION (ALINHADA: CARROSSEL ESQUERDA | TEXTO DIREITA) -->
-    <section class="bg-white py-12 md:py-24 border-b border-gray-50">
-        <div class="container mx-auto px-6 max-w-7xl">
+    <!-- HERO SECTION - ALINHAMENTO CORRIGIDO -->
+    <section class="bg-white py-12 md:py-24 border-b border-gray-50 overflow-hidden">
+        <div class="container mx-auto px-6 md:px-12 max-w-7xl">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
                 
-                <!-- COLUNA 1: CARROSSEL -->
+                <!-- COLUNA 1: CARROSSEL (Imagem) -->
+                <!-- No Mobile: Ordem 1 (Aparece Primeiro) | No Desktop: Ordem 1 (Esquerda) -->
                 <div class="w-full order-1 lg:order-1">
-                    <div class="carousel-container shadow-2xl shadow-gray-200/50">
+                    <div class="carousel-wrapper shadow-2xl shadow-gray-200/50">
                         <div class="carousel-slide active"><img src="images/ozori.jpg" alt="Ozoori Display 1"></div>
                         <div class="carousel-slide">
-                            <video autoplay muted loop playsinline class="w-full h-full object-cover rounded-xl">
+                            <video autoplay muted loop playsinline class="w-full h-full object-cover">
                                 <source src="images/ozori11.mp4" type="video/mp4">
                             </video>
                         </div>
@@ -170,16 +169,12 @@
                         <div class="carousel-slide"><img src="images/ozori6.jpg" alt="Ozoori Display 6"></div>
                         <div class="carousel-slide"><img src="images/ozori7.jpg" alt="Ozoori Display 7"></div>
                         <div class="carousel-slide"><img src="images/ozori8.webp" alt="Ozoori Display 8"></div>
-                        
-                        <!-- Indicadores de slide (opcional para UX) -->
-                        <div class="absolute bottom-4 left-0 right-0 flex justify-center gap-2 z-20">
-                            <!-- JS vai controlar isso visualmente se necessário, ou mantemos limpo -->
-                        </div>
                     </div>
                 </div>
 
-                <!-- COLUNA 2: CONTEÚDO HERO -->
-                <div class="w-full order-2 lg:order-2 text-left">
+                <!-- COLUNA 2: CONTEÚDO HERO (Texto) -->
+                <!-- No Mobile: Ordem 2 (Aparece em Baixo) | No Desktop: Ordem 2 (Direita) -->
+                <div class="w-full order-2 lg:order-2 text-left flex flex-col justify-center h-full">
                     <!-- Social Proof -->
                     <div class="flex items-center gap-3 mb-6 animate-fade-up">
                         <div class="flex text-yellow-400 text-sm gap-0.5">
@@ -191,32 +186,32 @@
                     </div>
                     
                     <!-- Headline -->
-                    <h1 class="text-4xl lg:text-6xl font-extrabold text-black mb-6 leading-[1.1] animate-fade-up" style="animation-delay: 0.1s">
+                    <h1 class="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold text-black mb-6 leading-[1.15] animate-fade-up" style="animation-delay: 0.1s">
                         Fridge Odor Is <span class="text-gray-400">Wasted Money</span> in Disguise.
                     </h1>
                     
                     <!-- Subheadline -->
-                    <p class="text-gray-600 text-lg lg:text-xl mb-10 leading-relaxed font-medium max-w-xl animate-fade-up" style="animation-delay: 0.2s">
+                    <p class="text-gray-600 text-lg mb-8 leading-relaxed font-medium max-w-xl animate-fade-up" style="animation-delay: 0.2s">
                         If it smells off, something’s breaking down — and you’re paying for it. Stop the cycle today.
                     </p>
 
                     <!-- Features List -->
                     <div class="space-y-4 mb-10 animate-fade-up" style="animation-delay: 0.3s">
-                        <div class="flex items-start gap-4 p-3 hover:bg-gray-50 rounded-xl transition-colors -ml-3">
-                            <div class="bg-black text-white w-6 h-6 rounded-full flex items-center justify-center shrink-0 text-[10px] mt-0.5"><i class="fas fa-check"></i></div>
-                            <p class="text-sm font-semibold text-gray-800">Neutralizes odors at the root (not sprays, not baking-soda hacks)</p>
+                        <div class="flex items-start gap-4">
+                            <div class="bg-black text-white w-5 h-5 rounded-full flex items-center justify-center shrink-0 text-[10px] mt-1"><i class="fas fa-check"></i></div>
+                            <p class="text-sm md:text-base font-semibold text-gray-800">Neutralizes odors at the root (not sprays)</p>
                         </div>
-                        <div class="flex items-start gap-4 p-3 hover:bg-gray-50 rounded-xl transition-colors -ml-3">
-                            <div class="bg-black text-white w-6 h-6 rounded-full flex items-center justify-center shrink-0 text-[10px] mt-0.5"><i class="fas fa-check"></i></div>
-                            <p class="text-sm font-semibold text-gray-800">Helps reduce odor-causing mold and bacteria in humid fridge conditions</p>
+                        <div class="flex items-start gap-4">
+                            <div class="bg-black text-white w-5 h-5 rounded-full flex items-center justify-center shrink-0 text-[10px] mt-1"><i class="fas fa-check"></i></div>
+                            <p class="text-sm md:text-base font-semibold text-gray-800">Helps reduce mold and bacteria in humidity</p>
                         </div>
-                        <div class="flex items-start gap-4 p-3 hover:bg-gray-50 rounded-xl transition-colors -ml-3">
-                            <div class="bg-black text-white w-6 h-6 rounded-full flex items-center justify-center shrink-0 text-[10px] mt-0.5"><i class="fas fa-check"></i></div>
-                            <p class="text-sm font-semibold text-gray-800">Makes groceries last longer — fewer repeat shopping trips</p>
+                        <div class="flex items-start gap-4">
+                            <div class="bg-black text-white w-5 h-5 rounded-full flex items-center justify-center shrink-0 text-[10px] mt-1"><i class="fas fa-check"></i></div>
+                            <p class="text-sm md:text-base font-semibold text-gray-800">Makes groceries last longer</p>
                         </div>
-                        <div class="flex items-start gap-4 p-3 hover:bg-gray-50 rounded-xl transition-colors -ml-3">
-                            <div class="bg-black text-white w-6 h-6 rounded-full flex items-center justify-center shrink-0 text-[10px] mt-0.5"><i class="fas fa-check"></i></div>
-                            <p class="text-sm font-semibold text-gray-800">No filters, no refills, no hidden costs: recharge and you’re done</p>
+                        <div class="flex items-start gap-4">
+                            <div class="bg-black text-white w-5 h-5 rounded-full flex items-center justify-center shrink-0 text-[10px] mt-1"><i class="fas fa-check"></i></div>
+                            <p class="text-sm md:text-base font-semibold text-gray-800">No filters, no refills, no hidden costs</p>
                         </div>
                     </div>
 
@@ -226,100 +221,100 @@
                             <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
                             In stock and ready to ship
                         </div>
-                        <button onclick="document.getElementById('country-selection').scrollIntoView({ behavior: 'smooth' })" class="w-full sm:w-auto bg-primary hover:bg-gray-900 text-white font-bold text-xl py-5 px-12 rounded-2xl shadow-xl shadow-black/20 transition-all hover:scale-[1.02] active:scale-95 uppercase tracking-tight flex items-center justify-center gap-3">
+                        <button onclick="document.getElementById('country-selection').scrollIntoView({ behavior: 'smooth' })" class="w-full sm:w-auto bg-primary hover:bg-gray-900 text-white font-bold text-lg md:text-xl py-4 md:py-5 px-10 md:px-12 rounded-2xl shadow-xl shadow-black/20 transition-all hover:scale-[1.02] active:scale-95 uppercase tracking-tight flex items-center justify-center gap-3">
                             <span>GET -75% OFF NOW</span>
                             <i class="fas fa-arrow-right text-sm"></i>
                         </button>
                     </div>
+
+                    <!-- Trust Bar (Integrada na Coluna do Texto no Desktop para Alinhamento) -->
+                    <div class="mt-10 pt-8 border-t border-gray-100 animate-fade-up" style="animation-delay: 0.5s">
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center md:text-left">
+                            <div class="flex flex-col md:flex-row items-center gap-2">
+                                <i class="fas fa-leaf text-black text-lg"></i>
+                                <span class="text-[10px] font-bold uppercase tracking-widest text-gray-500">Freshness</span>
+                            </div>
+                            <div class="flex flex-col md:flex-row items-center gap-2">
+                                <i class="fas fa-wind text-black text-lg"></i>
+                                <span class="text-[10px] font-bold uppercase tracking-widest text-gray-500">No Odor</span>
+                            </div>
+                            <div class="flex flex-col md:flex-row items-center gap-2">
+                                <i class="fas fa-sync text-black text-lg"></i>
+                                <span class="text-[10px] font-bold uppercase tracking-widest text-gray-500">No Filters</span>
+                            </div>
+                            <div class="flex flex-col md:flex-row items-center gap-2">
+                                <i class="fas fa-shield-alt text-black text-lg"></i>
+                                <span class="text-[10px] font-bold uppercase tracking-widest text-gray-500">Guarantee</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-            </div>
-            
-            <!-- Trust Bar Icons (Full Width Below) -->
-            <div class="mt-20 pt-10 border-t border-gray-100 animate-fade-up" style="animation-delay: 0.5s">
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-                    <div class="flex flex-col items-center gap-3">
-                        <div class="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center text-black"><i class="fas fa-leaf"></i></div>
-                        <span class="text-[10px] font-bold uppercase tracking-widest text-gray-500">Long-lasting Freshness</span>
-                    </div>
-                    <div class="flex flex-col items-center gap-3">
-                        <div class="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center text-black"><i class="fas fa-wind"></i></div>
-                        <span class="text-[10px] font-bold uppercase tracking-widest text-gray-500">Instant Odor Removal</span>
-                    </div>
-                    <div class="flex flex-col items-center gap-3">
-                        <div class="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center text-black"><i class="fas fa-sync"></i></div>
-                        <span class="text-[10px] font-bold uppercase tracking-widest text-gray-500">No Filter Replacement</span>
-                    </div>
-                    <div class="flex flex-col items-center gap-3">
-                        <div class="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center text-black"><i class="fas fa-shield-alt"></i></div>
-                        <span class="text-[10px] font-bold uppercase tracking-widest text-gray-500">30-Day Money-Back</span>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
 
-    <!-- COUNTRY SELECTION (SEGUNDA SESSÃO) -->
+    <!-- COUNTRY SELECTION (PADRONIZADA) -->
     <section id="country-selection" class="py-24 bg-gray-50 border-t border-gray-100">
-        <div class="container mx-auto px-6 max-w-7xl text-center">
+        <div class="container mx-auto px-6 md:px-12 max-w-7xl text-center">
             <h2 class="text-3xl md:text-5xl font-extrabold mb-16 tracking-tight text-black">Select your Region</h2>
             
             <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                <!-- Cards com hover effect melhorado -->
-                <a href="https://www.fasttrack36.com/PHPWHDRK/2R37J52Q/?uid=47762" class="card-light p-8 rounded-3xl flex flex-col items-center gap-5 group bg-white">
-                    <img src="https://flagcdn.com/w80/us.png" class="w-14 h-auto rounded-lg shadow-md" alt="USA">
-                    <span class="font-bold text-lg text-black group-hover:text-gray-600 transition">United States</span>
+                <!-- Cards -->
+                <a href="https://www.fasttrack36.com/PHPWHDRK/2R37J52Q/?uid=47762" class="card-light p-6 md:p-8 rounded-3xl flex flex-col items-center gap-5 group bg-white">
+                    <img src="https://flagcdn.com/w80/us.png" class="w-12 md:w-14 h-auto rounded-lg shadow-md" alt="USA">
+                    <span class="font-bold text-base md:text-lg text-black group-hover:text-gray-600 transition">United States</span>
                     <span class="text-[10px] bg-black text-white px-4 py-1.5 rounded-full font-bold uppercase group-hover:bg-gray-800 transition">See Offer</span>
                 </a>
-                <a href="https://www.fasttrack36.com/PHPWHDRK/2R37J52Q/?uid=47765" class="card-light p-8 rounded-3xl flex flex-col items-center gap-5 group bg-white">
-                    <img src="https://flagcdn.com/w80/gb.png" class="w-14 h-auto rounded-lg shadow-md" alt="UK">
-                    <span class="font-bold text-lg text-black group-hover:text-gray-600 transition">United Kingdom</span>
+                <a href="https://www.fasttrack36.com/PHPWHDRK/2R37J52Q/?uid=47765" class="card-light p-6 md:p-8 rounded-3xl flex flex-col items-center gap-5 group bg-white">
+                    <img src="https://flagcdn.com/w80/gb.png" class="w-12 md:w-14 h-auto rounded-lg shadow-md" alt="UK">
+                    <span class="font-bold text-base md:text-lg text-black group-hover:text-gray-600 transition">United Kingdom</span>
                     <span class="text-[10px] bg-black text-white px-4 py-1.5 rounded-full font-bold uppercase group-hover:bg-gray-800 transition">See Offer</span>
                 </a>
-                <a href="https://www.fasttrack36.com/PHPWHDRK/2R37J52Q/?uid=47777" class="card-light p-8 rounded-3xl flex flex-col items-center gap-5 group bg-white">
+                <a href="https://www.fasttrack36.com/PHPWHDRK/2R37J52Q/?uid=47777" class="card-light p-6 md:p-8 rounded-3xl flex flex-col items-center gap-5 group bg-white">
                     <div class="flex gap-1.5">
-                        <img src="https://flagcdn.com/w40/de.png" class="w-8 h-auto rounded shadow-sm" alt="DE">
-                        <img src="https://flagcdn.com/w40/at.png" class="w-8 h-auto rounded shadow-sm" alt="AT">
-                        <img src="https://flagcdn.com/w40/ch.png" class="w-8 h-auto rounded shadow-sm" alt="CH">
+                        <img src="https://flagcdn.com/w40/de.png" class="w-7 md:w-8 h-auto rounded shadow-sm" alt="DE">
+                        <img src="https://flagcdn.com/w40/at.png" class="w-7 md:w-8 h-auto rounded shadow-sm" alt="AT">
+                        <img src="https://flagcdn.com/w40/ch.png" class="w-7 md:w-8 h-auto rounded shadow-sm" alt="CH">
                     </div>
-                    <span class="font-bold text-lg text-black group-hover:text-gray-600 transition">DE / AT / CH</span>
+                    <span class="font-bold text-base md:text-lg text-black group-hover:text-gray-600 transition">DE / AT / CH</span>
                     <span class="text-[10px] bg-black text-white px-4 py-1.5 rounded-full font-bold uppercase group-hover:bg-gray-800 transition">See Offer</span>
                 </a>
-                <a href="https://www.fasttrack36.com/PHPWHDRK/2R37J52Q/?uid=47783" class="card-light p-8 rounded-3xl flex flex-col items-center gap-5 group bg-white">
-                    <img src="https://flagcdn.com/w80/nl.png" class="w-14 h-auto rounded-lg shadow-md" alt="NL">
-                    <span class="font-bold text-lg text-black group-hover:text-gray-600 transition">Netherlands</span>
+                <a href="https://www.fasttrack36.com/PHPWHDRK/2R37J52Q/?uid=47783" class="card-light p-6 md:p-8 rounded-3xl flex flex-col items-center gap-5 group bg-white">
+                    <img src="https://flagcdn.com/w80/nl.png" class="w-12 md:w-14 h-auto rounded-lg shadow-md" alt="NL">
+                    <span class="font-bold text-base md:text-lg text-black group-hover:text-gray-600 transition">Netherlands</span>
                     <span class="text-[10px] bg-black text-white px-4 py-1.5 rounded-full font-bold uppercase group-hover:bg-gray-800 transition">See Offer</span>
                 </a>
-                <a href="https://www.fasttrack36.com/PHPWHDRK/2R37J52Q/?uid=47780" class="card-light p-8 rounded-3xl flex flex-col items-center gap-5 group bg-white">
+                <a href="https://www.fasttrack36.com/PHPWHDRK/2R37J52Q/?uid=47780" class="card-light p-6 md:p-8 rounded-3xl flex flex-col items-center gap-5 group bg-white">
                     <div class="flex gap-1.5">
-                        <img src="https://flagcdn.com/w40/fr.png" class="w-8 h-auto rounded shadow-sm" alt="FR">
-                        <img src="https://flagcdn.com/w40/be.png" class="w-8 h-auto rounded shadow-sm" alt="BE">
+                        <img src="https://flagcdn.com/w40/fr.png" class="w-7 md:w-8 h-auto rounded shadow-sm" alt="FR">
+                        <img src="https://flagcdn.com/w40/be.png" class="w-7 md:w-8 h-auto rounded shadow-sm" alt="BE">
                     </div>
-                    <span class="font-bold text-lg text-black group-hover:text-gray-600 transition">France / Belgium</span>
+                    <span class="font-bold text-base md:text-lg text-black group-hover:text-gray-600 transition">France / Belgium</span>
                     <span class="text-[10px] bg-black text-white px-4 py-1.5 rounded-full font-bold uppercase group-hover:bg-gray-800 transition">See Offer</span>
                 </a>
-                <a href="https://www.fasttrack36.com/PHPWHDRK/2R37J52Q/?uid=47768" class="card-light p-8 rounded-3xl flex flex-col items-center gap-5 group bg-white">
-                    <img src="https://flagcdn.com/w80/ca.png" class="w-14 h-auto rounded-lg shadow-md" alt="CA">
-                    <span class="font-bold text-lg text-black group-hover:text-gray-600 transition">Canada</span>
+                <a href="https://www.fasttrack36.com/PHPWHDRK/2R37J52Q/?uid=47768" class="card-light p-6 md:p-8 rounded-3xl flex flex-col items-center gap-5 group bg-white">
+                    <img src="https://flagcdn.com/w80/ca.png" class="w-12 md:w-14 h-auto rounded-lg shadow-md" alt="CA">
+                    <span class="font-bold text-base md:text-lg text-black group-hover:text-gray-600 transition">Canada</span>
                     <span class="text-[10px] bg-black text-white px-4 py-1.5 rounded-full font-bold uppercase group-hover:bg-gray-800 transition">See Offer</span>
                 </a>
-                <a href="https://www.fasttrack36.com/PHPWHDRK/2R37J52Q/?uid=47774" class="card-light p-8 rounded-3xl flex flex-col items-center gap-5 group bg-white">
+                <a href="https://www.fasttrack36.com/PHPWHDRK/2R37J52Q/?uid=47774" class="card-light p-6 md:p-8 rounded-3xl flex flex-col items-center gap-5 group bg-white">
                     <i class="fas fa-euro-sign text-3xl text-gray-300"></i>
-                    <span class="font-bold text-lg text-black group-hover:text-gray-600 transition">Europe (General)</span>
+                    <span class="font-bold text-base md:text-lg text-black group-hover:text-gray-600 transition">Europe (General)</span>
                     <span class="text-[10px] bg-black text-white px-4 py-1.5 rounded-full font-bold uppercase group-hover:bg-gray-800 transition">See Offer</span>
                 </a>
-                <a href="https://www.fasttrack36.com/PHPWHDRK/2R37J52Q/" class="card-light p-8 rounded-3xl flex flex-col items-center gap-5 group bg-white">
+                <a href="https://www.fasttrack36.com/PHPWHDRK/2R37J52Q/" class="card-light p-6 md:p-8 rounded-3xl flex flex-col items-center gap-5 group bg-white">
                     <i class="fas fa-globe text-3xl text-gray-300"></i>
-                    <span class="font-bold text-lg text-black group-hover:text-gray-600 transition">Other Countries</span>
+                    <span class="font-bold text-base md:text-lg text-black group-hover:text-gray-600 transition">Other Countries</span>
                     <span class="text-[10px] bg-gray-100 text-gray-500 border border-gray-200 px-4 py-1.5 rounded-full font-bold uppercase group-hover:bg-gray-200 transition">See Offer</span>
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- FAQ -->
+    <!-- FAQ (PADRONIZADA) -->
     <section class="bg-white py-24">
-        <div class="container mx-auto px-6 max-w-3xl">
+        <div class="container mx-auto px-6 md:px-12 max-w-3xl">
             <h2 class="text-3xl md:text-4xl font-extrabold text-center mb-12 tracking-tight text-black">Questions & Answers</h2>
             <div class="space-y-4">
                 <details class="group card-light rounded-2xl shadow-sm transition-all bg-white">
@@ -344,9 +339,9 @@
         </div>
     </section>
 
-    <!-- FOOTER -->
+    <!-- FOOTER (PADRONIZADO) -->
     <footer class="bg-gray-50 pt-24 pb-12 border-t border-gray-200">
-        <div class="container mx-auto px-6 text-center max-w-7xl">
+        <div class="container mx-auto px-6 md:px-12 text-center max-w-7xl">
             <div class="mb-16">
                 <div class="inline-flex items-center gap-3 bg-white px-8 py-4 rounded-full border border-gray-200 shadow-sm">
                     <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
